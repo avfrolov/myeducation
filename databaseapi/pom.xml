@@ -47,6 +47,13 @@
             <artifactId>jbcrypt</artifactId>
         </dependency>
 
+<<<<<<< HEAD
+=======
+        <dependency>
+            <groupId>org.myeducation</groupId>
+            <artifactId>configuration</artifactId>
+        </dependency>
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     </dependencies>
 
     <build>

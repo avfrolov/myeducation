@@ -37,6 +37,10 @@ public class UserHibernateDAO implements UserDAO{
         manager.persist(userLogin);
 
         manager.getTransaction().commit();
+<<<<<<< HEAD
+=======
+        manager.close();
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     }
 
     public void updateUserInfo(String login, User user){
@@ -56,6 +60,7 @@ public class UserHibernateDAO implements UserDAO{
         manager.remove(login);
 
         manager.getTransaction().commit();
+<<<<<<< HEAD
     }
 
     public void removeUser(String login){
@@ -68,6 +73,19 @@ public class UserHibernateDAO implements UserDAO{
 
         manager.remove(user);
         manager.getTransaction().commit();
+=======
+        manager.close();
+    }
+
+    public void removeUser(String login){
+        EntityManager manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+        UserLogin user = getLogin(login);
+        UserLogin removeUser = manager.find(UserLogin.class, user.getId());
+        manager.remove(removeUser);
+        manager.getTransaction().commit();
+        manager.close();
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     }
 
     public UserLogin getLogin(int id){
@@ -77,7 +95,11 @@ public class UserHibernateDAO implements UserDAO{
         UserLogin login = manager.find(UserLogin.class, id);
         manager.remove(login);
         manager.getTransaction().commit();
+<<<<<<< HEAD
 
+=======
+        manager.close();
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
         return login;
     }
 
@@ -88,7 +110,10 @@ public class UserHibernateDAO implements UserDAO{
         query.setParameter("login", login);
         UserLogin userLogin =  (UserLogin)query.getSingleResult();
         manager.getTransaction().commit();
+<<<<<<< HEAD
+=======
+        manager.close();
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
         return userLogin;
     }
-
 }

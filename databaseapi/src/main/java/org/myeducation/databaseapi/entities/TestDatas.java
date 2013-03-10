@@ -22,11 +22,19 @@ public class TestDatas {
     @Column(name = "testdatas_exectype")
     private String execType;
 
+<<<<<<< HEAD
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "testdatas_attachdata")
     private AttachDataType attachDataType;
 
     @OneToMany(mappedBy = "testDatas", fetch = FetchType.EAGER)
+=======
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "testdatas_attachdata")
+    private AttachDataType attachDataType;
+
+    @OneToMany(mappedBy = "testDatas", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     private Set<TestData> testDatas;
 
     public long getId() {

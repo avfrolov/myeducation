@@ -22,6 +22,7 @@ public class AttachDataType {
     @Column(name = "attachdata_namepattern", length = 500)
     private String namePattern;
 
+<<<<<<< HEAD
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attachdatatype_task")
     private Task task;
@@ -30,6 +31,16 @@ public class AttachDataType {
     private Set<TestDatas> testDatas;
 
     @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+=======
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachdatatype_task")
+    private Task task;
+
+    @OneToMany(mappedBy = "attachDataType", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<TestDatas> testDatas;
+
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     private Set<AttachData> datas;
 
     public long getId() {

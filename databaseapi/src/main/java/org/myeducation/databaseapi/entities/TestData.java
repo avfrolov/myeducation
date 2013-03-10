@@ -24,7 +24,11 @@ public class TestData {
     @Column(name = "testdata_outputdata", columnDefinition = "LONGTEXT")
     private String outputData;
 
+<<<<<<< HEAD
     @ManyToOne(fetch = FetchType.EAGER)
+=======
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+>>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     @JoinColumn(name = "testdata_testdatas")
     private TestDatas testDatas;
 
