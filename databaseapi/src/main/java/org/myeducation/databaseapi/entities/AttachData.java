@@ -21,19 +21,11 @@ public class AttachData {
     @Column(name = "attachdata_content", columnDefinition = "LONGTEXT")
     private String content;
 
-<<<<<<< HEAD
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "attachdata_type")
-    private AttachDataType type;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-=======
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "attachdata_type")
     private AttachDataType type;
 
     @ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     @JoinColumn(name = "tasksend_id")
     private TaskSend taskSend;
 

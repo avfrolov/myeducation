@@ -1,10 +1,7 @@
 package org.myeducation.taskexecuter.core.processor;
 
-<<<<<<< HEAD
 import org.myeducation.databaseapi.entities.AttachData;
-=======
 import com.google.common.io.Closeables;
-import org.myeducation.databaseapi.entities.AttachData;
 import org.myeducation.databaseapi.entities.TestData;
 import org.myeducation.properties.PropertiesFactory;
 
@@ -16,7 +13,6 @@ import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,10 +29,6 @@ public class JavaProcessor extends AbstractProcessor {
     }
 
     @Override
-<<<<<<< HEAD
-    public void executeData(AttachData data) {
-        //here we will run java
-=======
     public void executeData(AttachData data, TestData testData) {
         Properties properties = PropertiesFactory.getProperties("filesystem");
         String name  = data.getContent();
@@ -146,7 +138,6 @@ public class JavaProcessor extends AbstractProcessor {
         }else{
             return false;
         }
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     }
 
     @Override

@@ -3,7 +3,6 @@ package processor.java;
 import org.junit.Before;
 import org.junit.Test;
 import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.AttachDataType;
 import org.myeducation.databaseapi.entities.TestData;
 import org.myeducation.databaseapi.entities.TestDatas;
 import org.myeducation.taskexecuter.core.processor.AbstractProcessor;

@@ -1,15 +1,13 @@
 package org.myeducation.databaseapi.dao.hibernate;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 import org.myeducation.databaseapi.dao.UserDAO;
 import org.myeducation.databaseapi.entities.User;
 import org.myeducation.databaseapi.entities.UserLogin;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,10 +35,7 @@ public class UserHibernateDAO implements UserDAO{
         manager.persist(userLogin);
 
         manager.getTransaction().commit();
-<<<<<<< HEAD
-=======
         manager.close();
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     }
 
     public void updateUserInfo(String login, User user){
@@ -60,11 +55,6 @@ public class UserHibernateDAO implements UserDAO{
         manager.remove(login);
 
         manager.getTransaction().commit();
-<<<<<<< HEAD
-    }
-
-    public void removeUser(String login){
-        removeUser(getLogin(login));
     }
 
     public void removeUser(UserLogin user){
@@ -73,7 +63,6 @@ public class UserHibernateDAO implements UserDAO{
 
         manager.remove(user);
         manager.getTransaction().commit();
-=======
         manager.close();
     }
 
@@ -85,7 +74,6 @@ public class UserHibernateDAO implements UserDAO{
         manager.remove(removeUser);
         manager.getTransaction().commit();
         manager.close();
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     }
 
     public UserLogin getLogin(int id){
@@ -95,11 +83,7 @@ public class UserHibernateDAO implements UserDAO{
         UserLogin login = manager.find(UserLogin.class, id);
         manager.remove(login);
         manager.getTransaction().commit();
-<<<<<<< HEAD
-
-=======
         manager.close();
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
         return login;
     }
 
@@ -110,10 +94,7 @@ public class UserHibernateDAO implements UserDAO{
         query.setParameter("login", login);
         UserLogin userLogin =  (UserLogin)query.getSingleResult();
         manager.getTransaction().commit();
-<<<<<<< HEAD
-=======
         manager.close();
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
         return userLogin;
     }
 }

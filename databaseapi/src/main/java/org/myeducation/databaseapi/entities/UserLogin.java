@@ -14,13 +14,9 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "userlogin")
-<<<<<<< HEAD
-@NamedQuery(name = "select_UserLogin_by_login", query = "SELECT u from UserLogin u where u.login=:login")
-=======
 @NamedQueries({
         @NamedQuery(name = "select_UserLogin_by_login", query = "SELECT u from UserLogin u where u.login=:login"),
 })
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
 public class UserLogin {
 
     @Id
@@ -38,11 +34,7 @@ public class UserLogin {
     @JoinColumn(name = "user_id")
     private User user;
 
-<<<<<<< HEAD
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-=======
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
->>>>>>> 180b853cfad84588e2e4c3fcb85e9fb8e82e5254
     private Set<TaskSend> taskSends;
 
     public int getId() {
