@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vs="http://jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           jxb:extensionBindingPrefixes="xjc"
+           jxb:version="1.0"
+           version="1.0"
+           targetNamespace="http://jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified" >
+
+<xs:annotation>
+        <xs:documentation>Schema of the XML document, which describe circuit scheme</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="schema" type="vs:Schema">
+        <xs:annotation>
+            <xs:documentation>
+                Root element of the XML document that is used as an incoming document to control the processor.
+            </xs:documentation>
+            <!--<xs:appinfo>-->
+                <!--<jxb:globalBindings>-->
+
+                <!--</jxb:globalBindings>-->
+            <!--</xs:appinfo>-->
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="Schema">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="node" type="vs:Node" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Node">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="elements" type="vs:Element" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="from" type="xs:int" use="required"/>
+        <xs:attribute name="to" type="xs:int" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Element" abstract="true">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="resistor" type="vs:Resistor" maxOccurs="unbounded"/>
+            <xs:element name="capacitor" type="vs:Capacitor" maxOccurs="unbounded"/>
+            <xs:element name="inductor" type="vs:Inductor" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <!--<xs:attribute name="countOfInputs" type="xs:int"/>-->
+        <!--<xs:attribute name="value" type="xs:int" />-->
+    </xs:complexType>
+
+    <xs:complexType name="Resistor">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Capacitor">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Inductor">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>
