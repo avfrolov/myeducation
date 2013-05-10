@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vs="http://rules.jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           jxb:extensionBindingPrefixes="xjc"
+           jxb:version="2.0"
+           version="1.0"
+           targetNamespace="http://rules.jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:annotation>
+        <xs:documentation>Schema of the XML document, which describe circuit scheme</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="rules" type="vs:Rules">
+        <xs:annotation>
+            <xs:documentation>
+                Root element of the XML document that is used as an incoming document to control the processor.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="Rules">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="rule" type="vs:Rule" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Rule">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="subtype" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="data" type="vs:Data"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="vs:RuleType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Data">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="element" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="RuleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EXIST"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
