@@ -6,7 +6,7 @@
 //
 
 
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb;
+package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;
 
 import java.util.ArrayList;
 import java.util.List;

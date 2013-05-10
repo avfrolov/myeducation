@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://jaxb.scheme.processor.core.taskexecuter.myeducation.org/", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb;
+package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;

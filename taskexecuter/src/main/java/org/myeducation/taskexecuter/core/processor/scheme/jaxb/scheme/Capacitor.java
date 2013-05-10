@@ -6,7 +6,7 @@
 //
 
 
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb;
+package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,12 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Resistor complex type.
+ * <p>Java class for Capacitor complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Resistor">
+ * &lt;complexType name="Capacitor">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -37,11 +37,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Resistor", propOrder = {
+@XmlType(name = "Capacitor", propOrder = {
     "countOfInputs",
     "value"
 })
-public class Resistor {
+public class Capacitor {
 
     @XmlElement(defaultValue = "2")
     protected int countOfInputs;

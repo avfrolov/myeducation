@@ -6,7 +6,7 @@
 //
 
 
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb;
+package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,18 +16,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Diode complex type.
+ * <p>Java class for Switch complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Diode">
+ * &lt;complexType name="Switch">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="maxCurrent" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *         &lt;element name="maxPotential" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -38,19 +37,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Diode", propOrder = {
+@XmlType(name = "Switch", propOrder = {
     "countOfInputs",
-    "maxCurrent",
-    "maxPotential"
+    "position"
 })
-public class Diode {
+public class Switch {
 
     @XmlElement(defaultValue = "2")
     protected int countOfInputs;
-    @XmlElement(defaultValue = "0.0")
-    protected double maxCurrent;
-    @XmlElement(defaultValue = "0.0")
-    protected double maxPotential;
+    @XmlElement(defaultValue = "true")
+    protected boolean position;
     @XmlAttribute(name = "name", required = true)
     protected String name;
 
@@ -71,35 +67,19 @@ public class Diode {
     }
 
     /**
-     * Gets the value of the maxCurrent property.
+     * Gets the value of the position property.
      * 
      */
-    public double getMaxCurrent() {
-        return maxCurrent;
+    public boolean isPosition() {
+        return position;
     }
 
     /**
-     * Sets the value of the maxCurrent property.
+     * Sets the value of the position property.
      * 
      */
-    public void setMaxCurrent(double value) {
-        this.maxCurrent = value;
-    }
-
-    /**
-     * Gets the value of the maxPotential property.
-     * 
-     */
-    public double getMaxPotential() {
-        return maxPotential;
-    }
-
-    /**
-     * Sets the value of the maxPotential property.
-     * 
-     */
-    public void setMaxPotential(double value) {
-        this.maxPotential = value;
+    public void setPosition(boolean value) {
+        this.position = value;
     }
 
     /**

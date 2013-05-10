@@ -6,7 +6,7 @@
 //
 
 
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb;
+package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,17 +16,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Switch complex type.
+ * <p>Java class for Inductor complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Switch">
+ * &lt;complexType name="Inductor">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -37,16 +37,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Switch", propOrder = {
+@XmlType(name = "Inductor", propOrder = {
     "countOfInputs",
-    "position"
+    "value"
 })
-public class Switch {
+public class Inductor {
 
     @XmlElement(defaultValue = "2")
     protected int countOfInputs;
-    @XmlElement(defaultValue = "true")
-    protected boolean position;
+    @XmlElement(defaultValue = "0.0")
+    protected double value;
     @XmlAttribute(name = "name", required = true)
     protected String name;
 
@@ -67,19 +67,19 @@ public class Switch {
     }
 
     /**
-     * Gets the value of the position property.
+     * Gets the value of the value property.
      * 
      */
-    public boolean isPosition() {
-        return position;
+    public double getValue() {
+        return value;
     }
 
     /**
-     * Sets the value of the position property.
+     * Sets the value of the value property.
      * 
      */
-    public void setPosition(boolean value) {
-        this.position = value;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     /**
