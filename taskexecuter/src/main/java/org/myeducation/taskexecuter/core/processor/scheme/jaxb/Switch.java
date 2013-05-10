@@ -16,17 +16,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Resistor complex type.
+ * <p>Java class for Switch complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Resistor">
+ * &lt;complexType name="Switch">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -37,16 +37,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Resistor", propOrder = {
+@XmlType(name = "Switch", propOrder = {
     "countOfInputs",
-    "value"
+    "position"
 })
-public class Resistor {
+public class Switch {
 
     @XmlElement(defaultValue = "2")
     protected int countOfInputs;
-    @XmlElement(defaultValue = "0.0")
-    protected double value;
+    @XmlElement(defaultValue = "true")
+    protected boolean position;
     @XmlAttribute(name = "name", required = true)
     protected String name;
 
@@ -67,19 +67,19 @@ public class Resistor {
     }
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the position property.
      * 
      */
-    public double getValue() {
-        return value;
+    public boolean isPosition() {
+        return position;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the position property.
      * 
      */
-    public void setValue(double value) {
-        this.value = value;
+    public void setPosition(boolean value) {
+        this.position = value;
     }
 
     /**

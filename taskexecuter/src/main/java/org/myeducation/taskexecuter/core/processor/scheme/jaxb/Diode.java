@@ -16,17 +16,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Resistor complex type.
+ * <p>Java class for Diode complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Resistor">
+ * &lt;complexType name="Diode">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="maxCurrent" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="maxPotential" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -37,16 +38,19 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Resistor", propOrder = {
+@XmlType(name = "Diode", propOrder = {
     "countOfInputs",
-    "value"
+    "maxCurrent",
+    "maxPotential"
 })
-public class Resistor {
+public class Diode {
 
     @XmlElement(defaultValue = "2")
     protected int countOfInputs;
     @XmlElement(defaultValue = "0.0")
-    protected double value;
+    protected double maxCurrent;
+    @XmlElement(defaultValue = "0.0")
+    protected double maxPotential;
     @XmlAttribute(name = "name", required = true)
     protected String name;
 
@@ -67,19 +71,35 @@ public class Resistor {
     }
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the maxCurrent property.
      * 
      */
-    public double getValue() {
-        return value;
+    public double getMaxCurrent() {
+        return maxCurrent;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the maxCurrent property.
      * 
      */
-    public void setValue(double value) {
-        this.value = value;
+    public void setMaxCurrent(double value) {
+        this.maxCurrent = value;
+    }
+
+    /**
+     * Gets the value of the maxPotential property.
+     * 
+     */
+    public double getMaxPotential() {
+        return maxPotential;
+    }
+
+    /**
+     * Sets the value of the maxPotential property.
+     * 
+     */
+    public void setMaxPotential(double value) {
+        this.maxPotential = value;
     }
 
     /**
