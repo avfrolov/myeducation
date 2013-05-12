@@ -24,7 +24,7 @@
 
     <xs:complexType name="Rules">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="rule" type="vs:Rule" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="rule" type="vs:Rule" minOccurs="1" maxOccurs="unbounded" nillable="false"/>
         </xs:sequence>
     </xs:complexType>
 
