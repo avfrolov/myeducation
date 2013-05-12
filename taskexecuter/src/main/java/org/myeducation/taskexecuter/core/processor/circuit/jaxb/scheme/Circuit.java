@@ -6,14 +6,11 @@
 //
 
 
-package org.myeducation.taskexecuter.core.processor.scheme.jaxb.scheme;
+package org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -26,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence maxOccurs="unbounded">
- *         &lt;element name="node" type="{http://scheme.jaxb.scheme.processor.core.taskexecuter.myeducation.org/}Node" maxOccurs="unbounded"/>
+ *         &lt;element name="node" type="{http://circuit.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Node" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,6 +36,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Circuit", propOrder = {
     "node"
 })
+//@XmlRootElement(name = "circuit", namespace = "http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/")
+@XmlRootElement
 public class Circuit {
 
     @XmlElement(required = true)

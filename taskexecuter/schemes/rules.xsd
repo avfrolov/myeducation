@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:vs="http://rules.jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           xmlns:vs="http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/"
            xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
            jxb:extensionBindingPrefixes="xjc"
            jxb:version="2.0"
            version="1.0"
-           targetNamespace="http://rules.jaxb.scheme.processor.core.taskexecuter.myeducation.org/"
+           targetNamespace="http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/"
            elementFormDefault="qualified"
            attributeFormDefault="unqualified">
 
     <xs:annotation>
-        <xs:documentation>Schema of the XML document, which describe circuit scheme</xs:documentation>
+        <xs:documentation>Schema of the XML document, which describe rules for validation of circuit scheme</xs:documentation>
     </xs:annotation>
 
     <xs:element name="rules" type="vs:Rules">
