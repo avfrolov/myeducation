@@ -3,10 +3,11 @@ package org.myeducation.taskexecuter.core.processor;
 import org.myeducation.databaseapi.entities.AttachData;
 import org.myeducation.databaseapi.entities.TestData;
 import org.myeducation.databaseapi.entities.TestDatas;
+import org.myeducation.databaseapi.service.*;
 import org.myeducation.properties.PropertiesFactory;
+import org.myeducation.databaseapi.entities.ProcessorResult;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import java.util.Properties;
 import java.util.concurrent.*;
 
@@ -17,18 +18,13 @@ import java.util.concurrent.*;
  * Time: 13:29
  * To change this template use File | Settings | File Templates.
  */
-public abstract class AbstractProcessor<T> {
+public abstract class AbstractProcessor<T extends Serializable> {
 
-    private final ExecutorService executorService;
-    private static final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+    private final java.util.concurrent.ExecutorService executorService =  Executors.newFixedThreadPool(getCores());
+    private static final java.util.concurrent.ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
     protected Properties properties = PropertiesFactory.getProperties("processors");
     protected String processorPrefix = "processor."+getProcessorName()+".";
-
-    public AbstractProcessor(int cores){
-        executorService = Executors.newFixedThreadPool(cores);
-
-    }
 
     public void execute(AttachData data, TestDatas testDatas){
 
@@ -38,47 +34,35 @@ public abstract class AbstractProcessor<T> {
         Runnable processorJob = new Runnable() {
             @Override
             public void run() {
-                ArrayList<T> aggregatedResult = new ArrayList<T>(tests.getTestDatas().size());
-                Exception exitException = null;
                 for (TestData testData : tests.getTestDatas()){
                     try{
-                        T result = validate(attachData, testData);
-                        aggregatedResult.add(result);
+                        ProcessorResult<T> result = validate(attachData, testData);
                         storeResult(result, attachData, testData);
                         if (needBreakPointResult(result)){
                             break;
                         }
                     }catch (Exception ex){
-                        T result = processException(ex, attachData, testData);
-                        aggregatedResult.add(result);
+                        ProcessorResult<T> result = processException(ex, attachData, testData);
+                        storeResult(result, attachData, testData);
                         if (needBreakPointException(ex)){
-                            exitException = ex;
                             break;
                         }
                     }
                 }
-                if(exitException == null)
-                    storeAggregatedResult(aggregatedResult, attachData, tests);
             }
         };
 
         executorService.execute(processorJob);
-
-        try {
-            Thread.sleep(50000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
-    private T validate(AttachData data, TestData testData) throws Exception{
+    private ProcessorResult<T> validate(AttachData data, TestData testData) throws Exception{
         final AttachData tempData = data;
         final TestData tempTestData = testData;
 
-        FutureTask<T> task = new FutureTask<T>(new Callable<T>() {
+        FutureTask<ProcessorResult<T>> task = new FutureTask<ProcessorResult<T>>(new Callable<ProcessorResult<T>>() {
             @Override
-            public T call() throws Exception{
-                return validateResult(tempData, tempTestData);
+            public ProcessorResult<T> call() throws Exception{
+                return getResult(tempData, tempTestData);
             }
         });
 
@@ -97,17 +81,39 @@ public abstract class AbstractProcessor<T> {
         }
     }
 
-    protected abstract T validateResult(AttachData data, TestData testData) throws Exception;
+    protected void storeResult(ProcessorResult<T> result, AttachData attachData, TestData testData){
+        ExecutorSaveService service = Service.getFactory().executorSaveService();
+        service.storeResult(result, attachData, testData);
+    }
 
-    protected abstract T processException(Exception ex, AttachData data, TestData testData);
+    public void shutDown(){
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(3, TimeUnit.HOURS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-    protected abstract void storeResult(T result, AttachData attachData, TestData testData);
+    protected abstract ProcessorResult<T> getResult(AttachData data, TestData testData) throws Exception;
 
-    protected abstract void storeAggregatedResult(List<T> result, AttachData attachData, TestDatas testData);
+    protected abstract ProcessorResult<T> processException(Exception ex, AttachData data, TestData testData);
 
-    protected abstract boolean needBreakPointResult(T result);
+    protected abstract boolean needBreakPointResult(ProcessorResult<T> result);
 
     protected abstract boolean needBreakPointException(Exception ex);
 
     public abstract String getProcessorName();
+
+    public abstract int getCores();
+
+    @Override
+    public boolean equals(Object o){
+        return getProcessorName().equals(o);
+    }
+
+    @Override
+    public int hashCode(){
+        return getProcessorName().hashCode();
+    }
 }

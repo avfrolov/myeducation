@@ -29,7 +29,6 @@ public class TaskSend {
     @Column(name = "tasksend_timesend")
     private long timeSend;
 
-
     public long getId() {
         return id;
     }

@@ -1,15 +1,10 @@
 package processor.java;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.TestData;
-import org.myeducation.databaseapi.entities.TestDatas;
-import org.myeducation.taskexecuter.core.processor.AbstractProcessor;
-import org.myeducation.taskexecuter.core.processor.java.JavaProcessor;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.myeducation.databaseapi.dao.Dao;
+import org.myeducation.databaseapi.dao.TaskDAO;
+import org.myeducation.databaseapi.entities.*;
+import org.myeducation.taskexecuter.core.Executor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,42 +15,15 @@ import java.util.Set;
  */
 public class JavaProcessorTest {
 
-    private AbstractProcessor processor;
+    private Executor executor = new Executor();
 
-    private AttachData data1;
-    private TestData testData1;
-    private TestData testData2;
-
-    @Before
-    public void initMethod(){
-        processor = new JavaProcessor();
-        data1 = new AttachData();
-        data1.setContent("example1.java");
-
-        testData1 = new TestData();
-        testData1.setInputData("clever");
-        testData1.setOutputData("Masha is clever");
-
-        testData2 = new TestData();
-        testData2.setInputData("super");
-        testData2.setOutputData("Masha is super");
-    }
-
+    private TaskDAO dao = Dao.getFactory().createTaskDao();
 
     @Test
     public void testHelloWorld(){
-        TestDatas datas = new TestDatas();
-        datas.setTimeOut(3000);
-
-        Set<TestData> testDataSet = new HashSet<TestData>();
-        testDataSet.add(testData1);
-        testData1.setTestDatas(datas);
-
-        testDataSet.add(testData2);
-        testData2.setTestDatas(datas);
-
-        datas.setTestDatas(testDataSet);
-
-        processor.execute(data1, datas);
+        TaskSend send =  dao.getTaskSend(1);
+        AttachData attachData = send.getAttachDatas().iterator().next();
+        executor.processData(attachData, attachData.getType().getTestDatas().iterator().next());
+        executor.shutDown();
     }
 }

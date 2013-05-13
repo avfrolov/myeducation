@@ -1,6 +1,7 @@
 package org.myeducation.databaseapi.service.local;
 
 import org.myeducation.databaseapi.service.AuthService;
+import org.myeducation.databaseapi.service.ExecutorSaveService;
 import org.myeducation.databaseapi.service.ServiceFactory;
 
 /**
@@ -11,7 +12,11 @@ import org.myeducation.databaseapi.service.ServiceFactory;
  * To change this template use File | Settings | File Templates.
  */
 public class LocalServiceFactory implements ServiceFactory {
-    public AuthService createAuthService() {
+    public AuthService authService() {
         return new AuthServiceLocal();
+    }
+
+    public ExecutorSaveService executorSaveService() {
+        return new ExecutorSaveServiceLocal();
     }
 }
