@@ -16,10 +16,10 @@
         </xs:documentation>
     </xs:annotation>
 
-    <!--<xs:import schemaLocation="../circuit/circuit.xsd"-->
-               <!--namespace="http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/"/>-->
+    <xs:import schemaLocation="../circuit/circuit.xsd"
+               namespace="http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/"/>
 
-    <xs:import schemaLocation="../circuit/circuit.xsd"/>
+    <!--<xs:import schemaLocation="../circuit/circuit.xsd"/>-->
 
     <xs:element name="rules" type="vs:Rules">
         <xs:annotation>
@@ -37,7 +37,7 @@
 
     <xs:complexType name="Rule">
         <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="1" name="subtype" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="subtype" type="vs:ExistSubType"/>
             <xs:element minOccurs="1" maxOccurs="1" name="data" type="vs:Data"/>
         </xs:sequence>
         <xs:attribute name="type" type="vs:RuleType" use="required"/>
@@ -45,13 +45,7 @@
 
     <xs:complexType name="Data">
         <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="1" name="element" type="cs:ElementType">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <jxb:dom/>
-                    </xs:appinfo>
-                </xs:annotation>
-            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="element" type="cs:ElementType"/>
             <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -59,6 +53,14 @@
     <xs:simpleType name="RuleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="EXIST"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ExistSubType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NAME"/>
+            <xs:enumeration value="COUNT"/>
+            <xs:enumeration value="VALUE"/>
         </xs:restriction>
     </xs:simpleType>
 

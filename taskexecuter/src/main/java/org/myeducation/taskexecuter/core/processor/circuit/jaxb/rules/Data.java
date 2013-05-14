@@ -3,7 +3,6 @@ package org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -17,7 +16,7 @@ import org.jvnet.jaxb2_commons.lang.ToString;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
-import org.w3c.dom.Element;
+import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
 
 
 /**
@@ -49,8 +48,8 @@ public class Data
     implements Equals, HashCode, ToString
 {
 
-    @XmlAnyElement
-    protected Element element;
+    @XmlElement(required = true)
+    protected ElementType element;
     @XmlElement(required = true)
     protected String value;
 
@@ -59,10 +58,10 @@ public class Data
      * 
      * @return
      *     possible object is
-     *     {@link Element }
+     *     {@link ElementType }
      *     
      */
-    public Element getElement() {
+    public ElementType getElement() {
         return element;
     }
 
@@ -71,10 +70,10 @@ public class Data
      * 
      * @param value
      *     allowed object is
-     *     {@link Element }
+     *     {@link ElementType }
      *     
      */
-    public void setElement(Element value) {
+    public void setElement(ElementType value) {
         this.element = value;
     }
 
@@ -111,9 +110,9 @@ public class Data
         }
         final Data that = ((Data) object);
         {
-            Element lhsElement;
+            ElementType lhsElement;
             lhsElement = this.getElement();
-            Element rhsElement;
+            ElementType rhsElement;
             rhsElement = that.getElement();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "element", lhsElement), LocatorUtils.property(thatLocator, "element", rhsElement), lhsElement, rhsElement)) {
                 return false;
@@ -139,7 +138,7 @@ public class Data
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            Element theElement;
+            ElementType theElement;
             theElement = this.getElement();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "element", theElement), currentHashCode, theElement);
         }
@@ -172,7 +171,7 @@ public class Data
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            Element theElement;
+            ElementType theElement;
             theElement = this.getElement();
             strategy.appendField(locator, this, "element", buffer, theElement);
         }

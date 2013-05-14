@@ -29,7 +29,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="subtype" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="subtype" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}ExistSubType"/>
  *         &lt;element name="data" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Data"/>
  *       &lt;/sequence>
  *       &lt;attribute name="type" use="required" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}RuleType" />
@@ -50,7 +50,7 @@ public class Rule
 {
 
     @XmlElement(required = true)
-    protected String subtype;
+    protected ExistSubType subtype;
     @XmlElement(required = true)
     protected Data data;
     @XmlAttribute(name = "type", required = true)
@@ -61,10 +61,10 @@ public class Rule
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ExistSubType }
      *     
      */
-    public String getSubtype() {
+    public ExistSubType getSubtype() {
         return subtype;
     }
 
@@ -73,10 +73,10 @@ public class Rule
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ExistSubType }
      *     
      */
-    public void setSubtype(String value) {
+    public void setSubtype(ExistSubType value) {
         this.subtype = value;
     }
 
@@ -137,9 +137,9 @@ public class Rule
         }
         final Rule that = ((Rule) object);
         {
-            String lhsSubtype;
+            ExistSubType lhsSubtype;
             lhsSubtype = this.getSubtype();
-            String rhsSubtype;
+            ExistSubType rhsSubtype;
             rhsSubtype = that.getSubtype();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "subtype", lhsSubtype), LocatorUtils.property(thatLocator, "subtype", rhsSubtype), lhsSubtype, rhsSubtype)) {
                 return false;
@@ -174,7 +174,7 @@ public class Rule
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            String theSubtype;
+            ExistSubType theSubtype;
             theSubtype = this.getSubtype();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "subtype", theSubtype), currentHashCode, theSubtype);
         }
@@ -212,7 +212,7 @@ public class Rule
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            String theSubtype;
+            ExistSubType theSubtype;
             theSubtype = this.getSubtype();
             strategy.appendField(locator, this, "subtype", buffer, theSubtype);
         }

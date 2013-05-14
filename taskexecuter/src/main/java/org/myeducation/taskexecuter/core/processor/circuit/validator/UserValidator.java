@@ -1,6 +1,6 @@
 package org.myeducation.taskexecuter.core.processor.circuit.validator;
 
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rules;
+import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rule;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
 
 /**
@@ -12,6 +12,6 @@ import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
  */
 public interface UserValidator extends AbstractValidator{
 
-    boolean validate(Circuit circuit, Rules rules);
+    boolean validate(Circuit circuit, Rule rule);
 
 }

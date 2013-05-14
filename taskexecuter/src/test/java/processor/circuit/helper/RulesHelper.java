@@ -1,9 +1,7 @@
 package processor.circuit.helper;
 
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Data;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rule;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.RuleType;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rules;
+import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.*;
+import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +21,7 @@ public class RulesHelper {
     public static Rule createRule() {
         Rule rule = new Rule();
         rule.setData(createData());
-        rule.setSubtype("name");
+        rule.setSubtype(ExistSubType.NAME);
         rule.setType(RuleType.EXIST);
         return rule;
     }
@@ -31,7 +29,7 @@ public class RulesHelper {
     public static Data createData() {
         Data data = new Data();
         data.setValue("R1");
-        data.setElement("R1");
+        data.setElement(ElementType.RESISTOR);
         return data;
     }
 
