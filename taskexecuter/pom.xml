@@ -35,12 +35,18 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.1</version>
+            <version>2.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.jvnet.jaxb2_commons</groupId>
             <artifactId>jaxb2-basics</artifactId>
+            <version>0.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-annotate</artifactId>
             <version>0.6.4</version>
         </dependency>
     </dependencies>
@@ -64,13 +70,13 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/schemes/circuit</schemaDirectory>
+                            <!--<bindingDirectory>${project.basedir}/schemes/circuit</bindingDirectory>-->
                             <schemaFiles>circuit.xsd</schemaFiles>
                             <clearOutputDir>false</clearOutputDir>
                             <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                             <packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme</packageName>
                             <extension>true</extension>
-
-                            <arguments>-Xequals -XhashCode -XtoString -no-header</arguments>
+                            <arguments>-Xequals -XhashCode -XtoString -Xannotate -no-header</arguments>
                         </configuration>
                     </execution>
                     <execution>
@@ -85,7 +91,7 @@
                             <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                             <packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules</packageName>
                             <extension>true</extension>
-                            <arguments>-Xequals -XhashCode -XtoString -no-header</arguments>
+                            <arguments>-Xequals -XhashCode -XtoString -no-header -nv</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -93,6 +99,11 @@
                     <dependency>
                         <groupId>org.jvnet.jaxb2_commons</groupId>
                         <artifactId>jaxb2-basics</artifactId>
+                        <version>0.6.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-annotate</artifactId>
                         <version>0.6.4</version>
                     </dependency>
                 </dependencies>

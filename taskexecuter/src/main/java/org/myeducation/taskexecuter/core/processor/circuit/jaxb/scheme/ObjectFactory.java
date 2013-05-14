@@ -42,22 +42,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Inductor }
-     * 
-     */
-    public Inductor createInductor() {
-        return new Inductor();
-    }
-
-    /**
-     * Create an instance of {@link Elements }
-     * 
-     */
-    public Elements createElements() {
-        return new Elements();
-    }
-
-    /**
      * Create an instance of {@link Transistor }
      * 
      */
@@ -74,11 +58,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Resistor }
+     * Create an instance of {@link Inductor }
      * 
      */
-    public Resistor createResistor() {
-        return new Resistor();
+    public Inductor createInductor() {
+        return new Inductor();
+    }
+
+    /**
+     * Create an instance of {@link Switch }
+     * 
+     */
+    public Switch createSwitch() {
+        return new Switch();
     }
 
     /**
@@ -90,19 +82,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Resistor }
+     * 
+     */
+    public Resistor createResistor() {
+        return new Resistor();
+    }
+
+    /**
+     * Create an instance of {@link Elements }
+     * 
+     */
+    public Elements createElements() {
+        return new Elements();
+    }
+
+    /**
      * Create an instance of {@link Diode }
      * 
      */
     public Diode createDiode() {
         return new Diode();
-    }
-
-    /**
-     * Create an instance of {@link Switch }
-     * 
-     */
-    public Switch createSwitch() {
-        return new Switch();
     }
 
     /**
