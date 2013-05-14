@@ -29,4 +29,20 @@ public class NodeValidatorTest {
         NodeValidator validator = new NodeValidator();
         Assert.assertTrue(validator.validate(c));
     }
+
+    @Test
+    public void testIncorrect1() throws Exception {
+        Circuit c = CircuitHelper.create();
+        c.getNode().add(CircuitHelper.createNode(4, 1, CircuitHelper.createElements13()));
+        NodeValidator validator = new NodeValidator();
+        Assert.assertFalse(validator.validate(c));
+    }
+
+    @Test
+    public void testIncorrect2() throws Exception {
+        Circuit c = CircuitHelper.create();
+        c.getNode().add(CircuitHelper.createNode(1, 4, CircuitHelper.createElements14()));
+        NodeValidator validator = new NodeValidator();
+        Assert.assertFalse(validator.validate(c));
+    }
 }

@@ -17,6 +17,11 @@ public class NodeValidator implements CircuitValidator {
 
     @Override
     public boolean validate(Circuit circuit) {
+
+        if (!validateNoDuplicate(circuit)) {
+            return false;
+        }
+
         for (Node n1 : circuit.getNode()) {
             int from = n1.getFrom();
             int to = n1.getTo();
@@ -35,6 +40,19 @@ public class NodeValidator implements CircuitValidator {
             }
         }
         return null;
+    }
+
+    private boolean validateNoDuplicate(Circuit circuit) {
+        for (int i = 0; i < circuit.getNode().size() - 1; i++) {
+            for (int j = i + 1; j < circuit.getNode().size(); j++) {
+                if (circuit.getNode().get(i).getFrom() == circuit.getNode().get(j).getFrom() &&
+                        circuit.getNode().get(i).getTo() == circuit.getNode().get(j).getTo()) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 }
