@@ -1,6 +1,7 @@
 package org.myeducation.taskexecuter.core.processor.circuit.validator.required;
 
 import org.apache.log4j.Logger;
+import org.myeducation.properties.PropertiesFactory;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rules;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
 import org.myeducation.taskexecuter.core.processor.circuit.validator.CircuitValidator;
@@ -29,12 +30,12 @@ public class SchemaValidator implements CircuitValidator, RuleValidator {
 
     @Override
     public boolean validate(Circuit circuit) {
-        return validate(circuit, "taskexecuter/schemes/circuit.xsd");
+        return validate(circuit, PropertiesFactory.getProperties("processors").getProperty("processor.circuit.circuit.path"));
     }
 
     @Override
     public boolean validate(Rules rules) {
-        return validate(rules, "taskexecuter/schemes/rules.xsd");
+        return validate(rules, PropertiesFactory.getProperties("processors").getProperty("processor.circuit.rules.path"));
     }
 
     private boolean validate(Object object, String pathToXsdSchema) {
