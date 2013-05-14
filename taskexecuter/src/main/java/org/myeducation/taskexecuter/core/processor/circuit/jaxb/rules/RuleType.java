@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "RuleType")
+@XmlType(name = "RuleType", namespace = "http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/")
 @XmlEnum
 public enum RuleType {
 

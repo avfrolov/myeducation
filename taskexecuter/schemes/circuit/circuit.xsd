@@ -97,4 +97,15 @@
         <xs:attribute name="name" type="xs:string" use="required"/>
     </xs:complexType>
 
+    <xs:simpleType name="ElementType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RESISTOR"/>
+            <xs:enumeration value="CAPACITOR"/>
+            <xs:enumeration value="INDUCTOR"/>
+            <xs:enumeration value="TRANSISTOR"/>
+            <xs:enumeration value="DIODE"/>
+            <xs:enumeration value="SWITCH"/>
+        </xs:restriction>
+    </xs:simpleType>
+
 </xs:schema>

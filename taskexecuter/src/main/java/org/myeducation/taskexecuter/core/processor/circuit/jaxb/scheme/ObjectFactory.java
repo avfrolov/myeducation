@@ -34,30 +34,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Capacitor }
-     * 
-     */
-    public Capacitor createCapacitor() {
-        return new Capacitor();
-    }
-
-    /**
-     * Create an instance of {@link Transistor }
-     * 
-     */
-    public Transistor createTransistor() {
-        return new Transistor();
-    }
-
-    /**
-     * Create an instance of {@link Circuit }
-     * 
-     */
-    public Circuit createCircuit() {
-        return new Circuit();
-    }
-
-    /**
      * Create an instance of {@link Inductor }
      * 
      */
@@ -66,27 +42,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Switch }
+     * Create an instance of {@link Capacitor }
      * 
      */
-    public Switch createSwitch() {
-        return new Switch();
-    }
-
-    /**
-     * Create an instance of {@link Node }
-     * 
-     */
-    public Node createNode() {
-        return new Node();
-    }
-
-    /**
-     * Create an instance of {@link Resistor }
-     * 
-     */
-    public Resistor createResistor() {
-        return new Resistor();
+    public Capacitor createCapacitor() {
+        return new Capacitor();
     }
 
     /**
@@ -98,11 +58,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Transistor }
+     * 
+     */
+    public Transistor createTransistor() {
+        return new Transistor();
+    }
+
+    /**
+     * Create an instance of {@link Resistor }
+     * 
+     */
+    public Resistor createResistor() {
+        return new Resistor();
+    }
+
+    /**
+     * Create an instance of {@link Switch }
+     * 
+     */
+    public Switch createSwitch() {
+        return new Switch();
+    }
+
+    /**
      * Create an instance of {@link Diode }
      * 
      */
     public Diode createDiode() {
         return new Diode();
+    }
+
+    /**
+     * Create an instance of {@link Node }
+     * 
+     */
+    public Node createNode() {
+        return new Node();
+    }
+
+    /**
+     * Create an instance of {@link Circuit }
+     * 
+     */
+    public Circuit createCircuit() {
+        return new Circuit();
     }
 
     /**
