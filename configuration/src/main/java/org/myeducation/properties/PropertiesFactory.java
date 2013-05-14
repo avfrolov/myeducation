@@ -16,23 +16,24 @@ public class PropertiesFactory {
 
     private static HashMap<String, Properties> propertiesMap = new HashMap<String, Properties>();
 
-    public static Properties getProperties(String propName){
-        if (!propertiesMap.containsKey(propName)){
+    public static Properties getProperties(String propName) {
+        if (!propertiesMap.containsKey(propName)) {
             Properties result = null;
-            try{
+            try {
                 Properties properties = new Properties();
-                String fileName = propName+".properties";
+                String fileName = propName + ".properties";
                 String folder = "properties";
                 String module = "configuration";
-                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
+//                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
+                String fullPath = System.getProperty("user.dir") + File.separator + module + File.separator + folder + File.separator + fileName;
                 properties.load(new FileReader(fullPath));
                 result = properties;
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
             propertiesMap.put(propName, result);
             return result;
-        }else{
+        } else {
             return propertiesMap.get(propName);
         }
     }
