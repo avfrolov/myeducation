@@ -98,7 +98,7 @@
         <xs:complexContent>
             <xs:extension base="vs:Element">
                 <xs:sequence minOccurs="1" maxOccurs="1">
-                    <xs:element minOccurs="1" maxOccurs="1" name="position" type="xs:boolean" default="true"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="enabled" type="xs:boolean" default="true"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

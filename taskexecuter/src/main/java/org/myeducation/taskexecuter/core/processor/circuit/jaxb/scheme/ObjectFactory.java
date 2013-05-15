@@ -34,51 +34,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Circuit }
-     * 
-     */
-    public Circuit createCircuit() {
-        return new Circuit();
-    }
-
-    /**
-     * Create an instance of {@link Switch }
-     * 
-     */
-    public Switch createSwitch() {
-        return new Switch();
-    }
-
-    /**
-     * Create an instance of {@link Elements }
-     * 
-     */
-    public Elements createElements() {
-        return new Elements();
-    }
-
-    /**
      * Create an instance of {@link Resistor }
      * 
      */
     public Resistor createResistor() {
         return new Resistor();
-    }
-
-    /**
-     * Create an instance of {@link Transistor }
-     * 
-     */
-    public Transistor createTransistor() {
-        return new Transistor();
-    }
-
-    /**
-     * Create an instance of {@link Inductor }
-     * 
-     */
-    public Inductor createInductor() {
-        return new Inductor();
     }
 
     /**
@@ -98,11 +58,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Element }
+     * Create an instance of {@link Switch }
      * 
      */
-    public Element createElement() {
-        return new Element();
+    public Switch createSwitch() {
+        return new Switch();
+    }
+
+    /**
+     * Create an instance of {@link Transistor }
+     * 
+     */
+    public Transistor createTransistor() {
+        return new Transistor();
+    }
+
+    /**
+     * Create an instance of {@link Inductor }
+     * 
+     */
+    public Inductor createInductor() {
+        return new Inductor();
+    }
+
+    /**
+     * Create an instance of {@link Elements }
+     * 
+     */
+    public Elements createElements() {
+        return new Elements();
     }
 
     /**
@@ -111,6 +95,22 @@ public class ObjectFactory {
      */
     public Node createNode() {
         return new Node();
+    }
+
+    /**
+     * Create an instance of {@link Circuit }
+     * 
+     */
+    public Circuit createCircuit() {
+        return new Circuit();
+    }
+
+    /**
+     * Create an instance of {@link Element }
+     * 
+     */
+    public Element createElement() {
+        return new Element();
     }
 
     /**

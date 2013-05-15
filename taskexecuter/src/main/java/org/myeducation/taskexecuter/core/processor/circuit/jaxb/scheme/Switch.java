@@ -28,7 +28,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent>
  *     &lt;extension base="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Element">
  *       &lt;sequence>
- *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="enabled" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -39,7 +39,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Switch", propOrder = {
-    "position"
+    "enabled"
 })
 public class Switch
     extends Element
@@ -47,22 +47,22 @@ public class Switch
 {
 
     @XmlElement(defaultValue = "true")
-    protected boolean position;
+    protected boolean enabled;
 
     /**
-     * Gets the value of the position property.
+     * Gets the value of the enabled property.
      * 
      */
-    public boolean isPosition() {
-        return position;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     /**
-     * Sets the value of the position property.
+     * Sets the value of the enabled property.
      * 
      */
-    public void setPosition(boolean value) {
-        this.position = value;
+    public void setEnabled(boolean value) {
+        this.enabled = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
@@ -77,11 +77,11 @@ public class Switch
         }
         final Switch that = ((Switch) object);
         {
-            boolean lhsPosition;
-            lhsPosition = (true?this.isPosition():false);
-            boolean rhsPosition;
-            rhsPosition = (true?that.isPosition():false);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "position", lhsPosition), LocatorUtils.property(thatLocator, "position", rhsPosition), lhsPosition, rhsPosition)) {
+            boolean lhsEnabled;
+            lhsEnabled = (true?this.isEnabled():false);
+            boolean rhsEnabled;
+            rhsEnabled = (true?that.isEnabled():false);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "enabled", lhsEnabled), LocatorUtils.property(thatLocator, "enabled", rhsEnabled), lhsEnabled, rhsEnabled)) {
                 return false;
             }
         }
@@ -96,9 +96,9 @@ public class Switch
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            boolean thePosition;
-            thePosition = (true?this.isPosition():false);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "position", thePosition), currentHashCode, thePosition);
+            boolean theEnabled;
+            theEnabled = (true?this.isEnabled():false);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "enabled", theEnabled), currentHashCode, theEnabled);
         }
         return currentHashCode;
     }
@@ -125,9 +125,9 @@ public class Switch
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         super.appendFields(locator, buffer, strategy);
         {
-            boolean thePosition;
-            thePosition = (true?this.isPosition():false);
-            strategy.appendField(locator, this, "position", buffer, thePosition);
+            boolean theEnabled;
+            theEnabled = (true?this.isEnabled():false);
+            strategy.appendField(locator, this, "enabled", buffer, theEnabled);
         }
         return buffer;
     }

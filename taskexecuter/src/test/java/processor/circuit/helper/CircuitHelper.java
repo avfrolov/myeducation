@@ -114,7 +114,7 @@ public class CircuitHelper {
 
     public static Switch createSwitch() {
         Switch mSwitch = new Switch();
-        mSwitch.setPosition(true);
+        mSwitch.setEnabled(true);
         mSwitch.setName("sw1");
         mSwitch.setCountOfInputs(2);
         return mSwitch;
