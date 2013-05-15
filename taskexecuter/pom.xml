@@ -59,39 +59,58 @@
                 <version>2.5.1</version>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.5</version>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.3</version>
                 <executions>
                     <execution>
-                        <id>circuit-xjc</id>
+                        <id>circuit-generate</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/schemes/circuit</schemaDirectory>
-                            <!--<bindingDirectory>${project.basedir}/schemes/circuit</bindingDirectory>-->
-                            <schemaFiles>circuit.xsd</schemaFiles>
-                            <clearOutputDir>false</clearOutputDir>
-                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                            <packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme</packageName>
+                            <schemaDirectory>schemes/circuit</schemaDirectory>
+                            <generateDirectory>src/main/java</generateDirectory>
+                            <generatePackage>org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme
+                            </generatePackage>
+                            <cleanPackageDirectories>false</cleanPackageDirectories>
+                            <removeOldOutput>false</removeOldOutput>
+                            <strict>false</strict>
                             <extension>true</extension>
-                            <arguments>-Xequals -XhashCode -XtoString -Xannotate -no-header</arguments>
+                            <args>
+                                <arg>-Xequals</arg>
+                                <arg>-XhashCode</arg>
+                                <arg>-XtoString</arg>
+                                <arg>-Xannotate</arg>
+                                <arg>-no-header</arg>
+                            </args>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>rules-xjc</id>
+                        <id>rules-generate</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/schemes/rules</schemaDirectory>
-                            <schemaFiles>rules.xsd</schemaFiles>
-                            <clearOutputDir>false</clearOutputDir>
-                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                            <packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules</packageName>
+                            <schemaDirectory>schemes/rules</schemaDirectory>
+                            <generateDirectory>src/main/java</generateDirectory>
+                            <generatePackage>org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules
+                            </generatePackage>
+                            <cleanPackageDirectories>false</cleanPackageDirectories>
+                            <removeOldOutput>false</removeOldOutput>
+                            <schemaExcludes>
+                                <schemaExclude>schemes/circuit/circuit.xsd</schemaExclude>
+                            </schemaExcludes>
+                            <strict>false</strict>
                             <extension>true</extension>
-                            <arguments>-Xequals -XhashCode -XtoString -no-header -nv</arguments>
+                            <episode>false</episode>
+                            <args>
+                                <arg>-Xequals</arg>
+                                <arg>-XhashCode</arg>
+                                <arg>-XtoString</arg>
+                                <arg>-Xannotate</arg>
+                                <arg>-no-header</arg>
+                            </args>
                         </configuration>
                     </execution>
                 </executions>
@@ -104,6 +123,11 @@
                     <dependency>
                         <groupId>org.jvnet.jaxb2_commons</groupId>
                         <artifactId>jaxb2-basics-annotate</artifactId>
+                        <version>0.6.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-runtime</artifactId>
                         <version>0.6.4</version>
                     </dependency>
                 </dependencies>
