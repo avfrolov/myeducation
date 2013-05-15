@@ -47,54 +47,61 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Resistor">
+    <xs:complexType name="Element">
         <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int"/>
             <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Resistor">
+        <xs:complexContent>
+            <xs:extension base="vs:Element"/>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Capacitor">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
-        </xs:sequence>
-        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:complexContent>
+            <xs:extension base="vs:Element"/>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Inductor">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
-        </xs:sequence>
-        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:complexContent>
+            <xs:extension base="vs:Element"/>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Transistor">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="3"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="gain" type="xs:int" default="1"/>
-
-        </xs:sequence>
-        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:complexContent>
+            <xs:extension base="vs:Element">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                    <xs:element minOccurs="1" maxOccurs="1" name="gain" type="xs:int" default="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Diode">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="maxCurrent" type="xs:double" default="0.0"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="maxPotential" type="xs:double" default="0.0"/>
-        </xs:sequence>
-        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:complexContent>
+            <xs:extension base="vs:Element">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                    <xs:element minOccurs="1" maxOccurs="1" name="maxCurrent" type="xs:double" default="0.0"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="maxPotential" type="xs:double" default="0.0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Switch">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int" default="2"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="position" type="xs:boolean" default="true"/>
-        </xs:sequence>
-        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:complexContent>
+            <xs:extension base="vs:Element">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                    <xs:element minOccurs="1" maxOccurs="1" name="position" type="xs:boolean" default="true"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:simpleType name="ElementType">

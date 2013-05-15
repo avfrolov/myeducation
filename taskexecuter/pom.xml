@@ -63,22 +63,22 @@
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>1.5</version>
                 <executions>
-                    <!--<execution>-->
-                        <!--<id>circuit-xjc</id>-->
-                        <!--<goals>-->
-                            <!--<goal>xjc</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<schemaDirectory>${project.basedir}/schemes/circuit</schemaDirectory>-->
-                            <!--&lt;!&ndash;<bindingDirectory>${project.basedir}/schemes/circuit</bindingDirectory>&ndash;&gt;-->
-                            <!--<schemaFiles>circuit.xsd</schemaFiles>-->
-                            <!--<clearOutputDir>false</clearOutputDir>-->
-                            <!--<outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
-                            <!--<packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme</packageName>-->
-                            <!--<extension>true</extension>-->
-                            <!--<arguments>-Xequals -XhashCode -XtoString -Xannotate -no-header</arguments>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
+                    <execution>
+                        <id>circuit-xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/schemes/circuit</schemaDirectory>
+                            <!--<bindingDirectory>${project.basedir}/schemes/circuit</bindingDirectory>-->
+                            <schemaFiles>circuit.xsd</schemaFiles>
+                            <clearOutputDir>false</clearOutputDir>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                            <packageName>org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme</packageName>
+                            <extension>true</extension>
+                            <arguments>-Xequals -XhashCode -XtoString -Xannotate -no-header</arguments>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>rules-xjc</id>
                         <goals>

@@ -3,8 +3,6 @@ package org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -16,7 +14,6 @@ import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
 import org.jvnet.jaxb2_commons.lang.ToString;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
@@ -27,13 +24,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Inductor">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
+ *     &lt;extension base="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Element">
+ *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -41,76 +33,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Inductor", propOrder = {
-    "countOfInputs",
-    "value"
-})
+@XmlType(name = "Inductor")
 public class Inductor
+    extends Element
     implements Equals, HashCode, ToString
 {
 
-    @XmlElement(defaultValue = "2")
-    protected int countOfInputs;
-    @XmlElement(defaultValue = "0.0")
-    protected double value;
-    @XmlAttribute(name = "name", required = true)
-    protected String name;
-
-    /**
-     * Gets the value of the countOfInputs property.
-     * 
-     */
-    public int getCountOfInputs() {
-        return countOfInputs;
-    }
-
-    /**
-     * Sets the value of the countOfInputs property.
-     * 
-     */
-    public void setCountOfInputs(int value) {
-        this.countOfInputs = value;
-    }
-
-    /**
-     * Gets the value of the value property.
-     * 
-     */
-    public double getValue() {
-        return value;
-    }
-
-    /**
-     * Sets the value of the value property.
-     * 
-     */
-    public void setValue(double value) {
-        this.value = value;
-    }
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof Inductor)) {
@@ -119,33 +47,8 @@ public class Inductor
         if (this == object) {
             return true;
         }
-        final Inductor that = ((Inductor) object);
-        {
-            int lhsCountOfInputs;
-            lhsCountOfInputs = (true?this.getCountOfInputs(): 0);
-            int rhsCountOfInputs;
-            rhsCountOfInputs = (true?that.getCountOfInputs(): 0);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countOfInputs", lhsCountOfInputs), LocatorUtils.property(thatLocator, "countOfInputs", rhsCountOfInputs), lhsCountOfInputs, rhsCountOfInputs)) {
-                return false;
-            }
-        }
-        {
-            double lhsValue;
-            lhsValue = (true?this.getValue(): 0.0D);
-            double rhsValue;
-            rhsValue = (true?that.getValue(): 0.0D);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "value", lhsValue), LocatorUtils.property(thatLocator, "value", rhsValue), lhsValue, rhsValue)) {
-                return false;
-            }
-        }
-        {
-            String lhsName;
-            lhsName = this.getName();
-            String rhsName;
-            rhsName = that.getName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "name", lhsName), LocatorUtils.property(thatLocator, "name", rhsName), lhsName, rhsName)) {
-                return false;
-            }
+        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+            return false;
         }
         return true;
     }
@@ -156,22 +59,7 @@ public class Inductor
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            int theCountOfInputs;
-            theCountOfInputs = (true?this.getCountOfInputs(): 0);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "countOfInputs", theCountOfInputs), currentHashCode, theCountOfInputs);
-        }
-        {
-            double theValue;
-            theValue = (true?this.getValue(): 0.0D);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "value", theValue), currentHashCode, theValue);
-        }
-        {
-            String theName;
-            theName = this.getName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "name", theName), currentHashCode, theName);
-        }
+        int currentHashCode = super.hashCode(locator, strategy);
         return currentHashCode;
     }
 
@@ -195,21 +83,7 @@ public class Inductor
     }
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            int theCountOfInputs;
-            theCountOfInputs = (true?this.getCountOfInputs(): 0);
-            strategy.appendField(locator, this, "countOfInputs", buffer, theCountOfInputs);
-        }
-        {
-            double theValue;
-            theValue = (true?this.getValue(): 0.0D);
-            strategy.appendField(locator, this, "value", buffer, theValue);
-        }
-        {
-            String theName;
-            theName = this.getName();
-            strategy.appendField(locator, this, "name", buffer, theName);
-        }
+        super.appendFields(locator, buffer, strategy);
         return buffer;
     }
 

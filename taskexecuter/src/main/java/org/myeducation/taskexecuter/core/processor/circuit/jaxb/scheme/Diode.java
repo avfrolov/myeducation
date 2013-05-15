@@ -3,7 +3,6 @@ package org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -27,14 +26,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Diode">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;extension base="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Element">
  *       &lt;sequence>
- *         &lt;element name="countOfInputs" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="maxCurrent" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="maxPotential" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
+ *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -43,38 +40,18 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Diode", propOrder = {
-    "countOfInputs",
     "maxCurrent",
     "maxPotential"
 })
 public class Diode
+    extends Element
     implements Equals, HashCode, ToString
 {
 
-    @XmlElement(defaultValue = "2")
-    protected int countOfInputs;
     @XmlElement(defaultValue = "0.0")
     protected double maxCurrent;
     @XmlElement(defaultValue = "0.0")
     protected double maxPotential;
-    @XmlAttribute(name = "name", required = true)
-    protected String name;
-
-    /**
-     * Gets the value of the countOfInputs property.
-     * 
-     */
-    public int getCountOfInputs() {
-        return countOfInputs;
-    }
-
-    /**
-     * Sets the value of the countOfInputs property.
-     * 
-     */
-    public void setCountOfInputs(int value) {
-        this.countOfInputs = value;
-    }
 
     /**
      * Gets the value of the maxCurrent property.
@@ -108,30 +85,6 @@ public class Diode
         this.maxPotential = value;
     }
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
-
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof Diode)) {
             return false;
@@ -139,16 +92,10 @@ public class Diode
         if (this == object) {
             return true;
         }
-        final Diode that = ((Diode) object);
-        {
-            int lhsCountOfInputs;
-            lhsCountOfInputs = (true?this.getCountOfInputs(): 0);
-            int rhsCountOfInputs;
-            rhsCountOfInputs = (true?that.getCountOfInputs(): 0);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countOfInputs", lhsCountOfInputs), LocatorUtils.property(thatLocator, "countOfInputs", rhsCountOfInputs), lhsCountOfInputs, rhsCountOfInputs)) {
-                return false;
-            }
+        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+            return false;
         }
+        final Diode that = ((Diode) object);
         {
             double lhsMaxCurrent;
             lhsMaxCurrent = (true?this.getMaxCurrent(): 0.0D);
@@ -167,15 +114,6 @@ public class Diode
                 return false;
             }
         }
-        {
-            String lhsName;
-            lhsName = this.getName();
-            String rhsName;
-            rhsName = that.getName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "name", lhsName), LocatorUtils.property(thatLocator, "name", rhsName), lhsName, rhsName)) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -185,12 +123,7 @@ public class Diode
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            int theCountOfInputs;
-            theCountOfInputs = (true?this.getCountOfInputs(): 0);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "countOfInputs", theCountOfInputs), currentHashCode, theCountOfInputs);
-        }
+        int currentHashCode = super.hashCode(locator, strategy);
         {
             double theMaxCurrent;
             theMaxCurrent = (true?this.getMaxCurrent(): 0.0D);
@@ -200,11 +133,6 @@ public class Diode
             double theMaxPotential;
             theMaxPotential = (true?this.getMaxPotential(): 0.0D);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "maxPotential", theMaxPotential), currentHashCode, theMaxPotential);
-        }
-        {
-            String theName;
-            theName = this.getName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "name", theName), currentHashCode, theName);
         }
         return currentHashCode;
     }
@@ -229,11 +157,7 @@ public class Diode
     }
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            int theCountOfInputs;
-            theCountOfInputs = (true?this.getCountOfInputs(): 0);
-            strategy.appendField(locator, this, "countOfInputs", buffer, theCountOfInputs);
-        }
+        super.appendFields(locator, buffer, strategy);
         {
             double theMaxCurrent;
             theMaxCurrent = (true?this.getMaxCurrent(): 0.0D);
@@ -243,11 +167,6 @@ public class Diode
             double theMaxPotential;
             theMaxPotential = (true?this.getMaxPotential(): 0.0D);
             strategy.appendField(locator, this, "maxPotential", buffer, theMaxPotential);
-        }
-        {
-            String theName;
-            theName = this.getName();
-            strategy.appendField(locator, this, "name", buffer, theName);
         }
         return buffer;
     }
