@@ -19,25 +19,19 @@ public class ExistValidator implements UserValidator {
 
     @Override
     public boolean validate(Circuit circuit, Rule rule) {
-        boolean result;
         switch (rule.getSubtype()) {
             case NAME:
-                result = validateByName(circuit.getNode(), rule.getData());
-                break;
+                return validateByName(circuit.getNode(), rule.getData());
             case COUNT:
-                result = validateByCount(circuit.getNode(), rule.getData());
-                break;
+                return validateByCount(circuit.getNode(), rule.getData());
             case VALUE:
-                result = validateByValue(circuit.getNode(), rule.getData());
-                break;
+                return validateByValue(circuit.getNode(), rule.getData());
             default:
                 throw new IllegalArgumentException("Rule subtype = " + rule.getSubtype() + " doesn't supported");
         }
-        return result;
     }
 
     private boolean validateByName(List<Node> nodes, Data data) {
-
         if (StringUtils.isEmpty(data.getValue())) {
             return false;
         }
@@ -45,53 +39,23 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    for (Capacitor capacitor : node.getElements().getCapacitors()) {
-                        if (capacitor.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getCapacitors(), data.getValue())) return true;
                     break;
-
                 case DIODE:
-                    for (Diode diode : node.getElements().getDiodes()) {
-                        if (diode.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getDiodes(), data.getValue())) return true;
                     break;
-
                 case INDUCTOR:
-                    for (Inductor inductor : node.getElements().getInductors()) {
-                        if (inductor.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getInductors(), data.getValue())) return true;
                     break;
-
                 case RESISTOR:
-                    for (Resistor resistor : node.getElements().getResistors()) {
-                        if (resistor.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getResistors(), data.getValue())) return true;
                     break;
-
                 case SWITCH:
-                    for (Switch mSwitch : node.getElements().getSwitches()) {
-                        if (mSwitch.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getSwitches(), data.getValue())) return true;
                     break;
-
                 case TRANSISTOR:
-                    for (Transistor transistor : node.getElements().getTransistors()) {
-                        if (transistor.getName().equalsIgnoreCase(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByName(node.getElements().getTransistors(), data.getValue())) return true;
                     break;
-
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
             }
@@ -100,9 +64,9 @@ public class ExistValidator implements UserValidator {
     }
 
     private boolean validateByValue(List<Node> nodes, Data data) {
-
+        double value = 0;
         try {
-            Double.valueOf(data.getValue());
+            value = Double.valueOf(data.getValue());
         } catch (NumberFormatException nfe) {
             return false;
         }
@@ -110,46 +74,20 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    for (Capacitor capacitor : node.getElements().getCapacitors()) {
-                        if (capacitor.getValue() == Double.valueOf(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByValue(node.getElements().getCapacitors(), value)) return true;
                     break;
-
                 case DIODE:
-                    for (Diode diode : node.getElements().getDiodes()) {
-                        if (diode.getMaxCurrent() == Double.valueOf(data.getValue()) ||
-                                diode.getMaxPotential() == Double.valueOf(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByValue(node.getElements().getDiodes(), value)) return true;
                     break;
-
                 case INDUCTOR:
-                    for (Inductor inductor : node.getElements().getInductors()) {
-                        if (inductor.getValue() == Double.valueOf(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByValue(node.getElements().getInductors(), value)) return true;
                     break;
-
                 case RESISTOR:
-                    for (Resistor resistor : node.getElements().getResistors()) {
-                        if (resistor.getValue() == Double.valueOf(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByValue(node.getElements().getResistors(), value)) return true;
                     break;
-
                 case TRANSISTOR:
-                    for (Transistor transistor : node.getElements().getTransistors()) {
-                        if (transistor.getGain() == Integer.valueOf(data.getValue())) {
-                            return true;
-                        }
-                    }
+                    if (checkCollectionByValue(node.getElements().getTransistors(), value)) return true;
                     break;
-
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
             }
@@ -158,7 +96,6 @@ public class ExistValidator implements UserValidator {
     }
 
     private boolean validateByCount(List<Node> nodes, Data data) {
-
         if (data == null) {
             return false;
         }
@@ -172,25 +109,43 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getCapacitors().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getCapacitors().size()) return true;
+                    break;
                 case DIODE:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getDiodes().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getDiodes().size()) return true;
+                    break;
                 case INDUCTOR:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getInductors().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getInductors().size()) return true;
+                    break;
                 case RESISTOR:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getResistors().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getResistors().size()) return true;
+                    break;
                 case SWITCH:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getSwitches().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getSwitches().size()) return true;
+                    break;
                 case TRANSISTOR:
-                    return Integer.valueOf(data.getValue()) == node.getElements().getTransistors().size();
-
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getTransistors().size()) return true;
+                    break;
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
+            }
+        }
+        return false;
+    }
+
+    private boolean checkCollectionByName(List<? extends Element> elements, String name) {
+        for (Element element : elements) {
+            if (element.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkCollectionByValue(List<? extends Element> elements, Double value) {
+        for (Element element : elements) {
+            if (element.getValue() == value) {
+                return true;
             }
         }
         return false;

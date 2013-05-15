@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.*;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
+import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Resistor;
 import org.myeducation.taskexecuter.core.processor.circuit.validator.users.ExistValidator;
 import processor.circuit.helper.CircuitHelper;
 import processor.circuit.helper.RulesHelper;
@@ -135,5 +136,25 @@ public class ExistValidatorTest {
         r.getRule().get(0).setData(data);
 
         Assert.assertFalse(validator.validate(c, r.getRule().get(0)));
+    }
+
+    @Test
+    public void testExistValue4() throws Exception {
+        ExistValidator validator = new ExistValidator();
+        Circuit c = CircuitHelper.create();
+        Resistor resistor = new Resistor();
+        resistor.setValue(3);
+        c.getNode().get(0).getElements().getResistors().add(resistor);
+        Rules r = RulesHelper.create();
+        Rule rule = new Rule();
+        rule.setType(RuleType.EXIST);
+        rule.setSubtype(ExistSubType.VALUE);
+        Data data = new Data();
+        data.setElement(ElementType.RESISTOR);
+        data.setValue("3");
+        rule.setData(data);
+        r.getRule().add(rule);
+
+        Assert.assertTrue(validator.validate(c, r.getRule().get(0)));
     }
 }
