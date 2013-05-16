@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.*;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Resistor;
 import org.myeducation.taskexecuter.core.processor.circuit.validator.users.ExistValidator;
 import processor.circuit.helper.CircuitHelper;
@@ -144,7 +143,7 @@ public class ExistValidatorTest {
         Circuit c = CircuitHelper.create();
         Resistor resistor = new Resistor();
         resistor.setValue(3);
-        c.getNode().get(0).getElements().getResistors().add(resistor);
+        c.getNode().get(0).getElements().getResistor().add(resistor);
         Rules r = RulesHelper.create();
         Rule rule = new Rule();
         rule.setType(RuleType.EXIST);

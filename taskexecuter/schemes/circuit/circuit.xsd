@@ -38,38 +38,49 @@
 
     <xs:complexType name="Elements">
         <xs:sequence>
-            <xs:element name="resistors" type="vs:Resistor" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="capacitors" type="vs:Capacitor" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="inductors" type="vs:Inductor" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="transistors" type="vs:Transistor" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="diodes" type="vs:Diode" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="switches" type="vs:Switch" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="resistor" type="vs:Resistor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="capacitor" type="vs:Capacitor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="inductor" type="vs:Inductor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="transistor" type="vs:Transistor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="diode" type="vs:Diode" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="switch" type="vs:Switch" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="Element">
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element minOccurs="1" maxOccurs="1" name="countOfInputs" type="xs:int"/>
-            <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="Resistor">
         <xs:complexContent>
-            <xs:extension base="vs:Element"/>
+            <xs:extension base="vs:Element">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+                </xs:sequence>
+            </xs:extension>
         </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Capacitor">
         <xs:complexContent>
-            <xs:extension base="vs:Element"/>
+            <xs:extension base="vs:Element">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+                </xs:sequence>
+            </xs:extension>
         </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="Inductor">
         <xs:complexContent>
-            <xs:extension base="vs:Element"/>
+            <xs:extension base="vs:Element">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:double" default="0.0"/>
+                </xs:sequence>
+            </xs:extension>
         </xs:complexContent>
     </xs:complexType>
 
@@ -103,16 +114,5 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-
-    <xs:simpleType name="ElementType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="RESISTOR"/>
-            <xs:enumeration value="CAPACITOR"/>
-            <xs:enumeration value="INDUCTOR"/>
-            <xs:enumeration value="TRANSISTOR"/>
-            <xs:enumeration value="DIODE"/>
-            <xs:enumeration value="SWITCH"/>
-        </xs:restriction>
-    </xs:simpleType>
 
 </xs:schema>

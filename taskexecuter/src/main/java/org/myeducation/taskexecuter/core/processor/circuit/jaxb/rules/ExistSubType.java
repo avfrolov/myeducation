@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "ExistSubType", namespace = "http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/")
+@XmlType(name = "ExistSubType")
 @XmlEnum
 public enum ExistSubType {
 

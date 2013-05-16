@@ -47,6 +47,7 @@ public class SchemaValidator implements CircuitValidator, RuleValidator {
 
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setSchema(xsdSchema);
+            marshaller.marshal(object, System.out);
             marshaller.marshal(object, new DefaultHandler());  // DefaultHandler use a "/dev/null" implementation of a SAX processor
 
             return true;

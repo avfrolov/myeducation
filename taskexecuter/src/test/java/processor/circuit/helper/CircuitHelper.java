@@ -43,31 +43,31 @@ public class CircuitHelper {
 
     public static Elements createElements14() {
         Elements elements = new Elements();
-        elements.getResistors().add(createResistor());
+        elements.getResistor().add(createResistor());
         return elements;
     }
 
     public static Elements createElements13() {
         Elements elements = new Elements();
-        elements.getTransistors().add(createTransistor());
+        elements.getTransistor().add(createTransistor());
         return elements;
     }
 
     public static Elements createElements42() {
         Elements elements = new Elements();
-        elements.getCapacitors().add(createCapacitor());
+        elements.getCapacitor().add(createCapacitor());
         return elements;
     }
 
     public static Elements createElements43() {
         Elements elements = new Elements();
-        elements.getInductors().add(createInductor());
+        elements.getInductor().add(createInductor());
         return elements;
     }
 
     public static Elements createElements23() {
         Elements elements = new Elements();
-        elements.getSwitches().add(createSwitch());
+        elements.getSwitch().add(createSwitch());
         return elements;
     }
 

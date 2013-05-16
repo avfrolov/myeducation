@@ -24,7 +24,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Circuit_QNAME = new QName("http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/", "circuit");
     private final static QName _Rules_QNAME = new QName("http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/", "rules");
 
     /**
@@ -56,95 +55,6 @@ public class ObjectFactory {
      */
     public Rule createRule() {
         return new Rule();
-    }
-
-    /**
-     * Create an instance of {@link Circuit }
-     * 
-     */
-    public Circuit createCircuit() {
-        return new Circuit();
-    }
-
-    /**
-     * Create an instance of {@link Switch }
-     * 
-     */
-    public Switch createSwitch() {
-        return new Switch();
-    }
-
-    /**
-     * Create an instance of {@link Resistor }
-     * 
-     */
-    public Resistor createResistor() {
-        return new Resistor();
-    }
-
-    /**
-     * Create an instance of {@link Diode }
-     * 
-     */
-    public Diode createDiode() {
-        return new Diode();
-    }
-
-    /**
-     * Create an instance of {@link Node }
-     * 
-     */
-    public Node createNode() {
-        return new Node();
-    }
-
-    /**
-     * Create an instance of {@link Elements }
-     * 
-     */
-    public Elements createElements() {
-        return new Elements();
-    }
-
-    /**
-     * Create an instance of {@link Capacitor }
-     * 
-     */
-    public Capacitor createCapacitor() {
-        return new Capacitor();
-    }
-
-    /**
-     * Create an instance of {@link Inductor }
-     * 
-     */
-    public Inductor createInductor() {
-        return new Inductor();
-    }
-
-    /**
-     * Create an instance of {@link Element }
-     * 
-     */
-    public Element createElement() {
-        return new Element();
-    }
-
-    /**
-     * Create an instance of {@link Transistor }
-     * 
-     */
-    public Transistor createTransistor() {
-        return new Transistor();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Circuit }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/", name = "circuit")
-    public JAXBElement<Circuit> createCircuit(Circuit value) {
-        return new JAXBElement<Circuit>(_Circuit_QNAME, Circuit.class, null, value);
     }
 
     /**

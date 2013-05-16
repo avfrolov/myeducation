@@ -103,7 +103,7 @@
                             </schemaExcludes>
                             <strict>false</strict>
                             <extension>true</extension>
-                            <episode>false</episode>
+                            <!--<episode>false</episode>-->
                             <args>
                                 <arg>-Xequals</arg>
                                 <arg>-XhashCode</arg>

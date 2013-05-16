@@ -3,6 +3,7 @@ package org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -14,6 +15,7 @@ import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
 import org.jvnet.jaxb2_commons.lang.ToString;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
+import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
@@ -25,6 +27,9 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * &lt;complexType name="Resistor">
  *   &lt;complexContent>
  *     &lt;extension base="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Element">
+ *       &lt;sequence>
+ *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -33,12 +38,32 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Resistor")
+@XmlType(name = "Resistor", propOrder = {
+    "value"
+})
 public class Resistor
     extends Element
     implements Equals, HashCode, ToString
 {
 
+    @XmlElement(defaultValue = "0.0")
+    protected double value;
+
+    /**
+     * Gets the value of the value property.
+     * 
+     */
+    public double getValue() {
+        return value;
+    }
+
+    /**
+     * Sets the value of the value property.
+     * 
+     */
+    public void setValue(double value) {
+        this.value = value;
+    }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof Resistor)) {
@@ -50,6 +75,16 @@ public class Resistor
         if (!super.equals(thisLocator, thatLocator, object, strategy)) {
             return false;
         }
+        final Resistor that = ((Resistor) object);
+        {
+            double lhsValue;
+            lhsValue = (true?this.getValue(): 0.0D);
+            double rhsValue;
+            rhsValue = (true?that.getValue(): 0.0D);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "value", lhsValue), LocatorUtils.property(thatLocator, "value", rhsValue), lhsValue, rhsValue)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -60,6 +95,11 @@ public class Resistor
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
+        {
+            double theValue;
+            theValue = (true?this.getValue(): 0.0D);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "value", theValue), currentHashCode, theValue);
+        }
         return currentHashCode;
     }
 
@@ -84,6 +124,11 @@ public class Resistor
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         super.appendFields(locator, buffer, strategy);
+        {
+            double theValue;
+            theValue = (true?this.getValue(): 0.0D);
+            strategy.appendField(locator, this, "value", buffer, theValue);
+        }
         return buffer;
     }
 

@@ -1,7 +1,6 @@
 package processor.circuit.helper;
 
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.*;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
 
 /**
  * Created with IntelliJ IDEA.

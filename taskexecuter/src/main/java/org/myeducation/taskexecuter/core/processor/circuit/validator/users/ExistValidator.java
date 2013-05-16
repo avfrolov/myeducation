@@ -39,22 +39,22 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    if (checkCollectionByName(node.getElements().getCapacitors(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getCapacitor(), data.getValue())) return true;
                     break;
                 case DIODE:
-                    if (checkCollectionByName(node.getElements().getDiodes(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getDiode(), data.getValue())) return true;
                     break;
                 case INDUCTOR:
-                    if (checkCollectionByName(node.getElements().getInductors(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getInductor(), data.getValue())) return true;
                     break;
                 case RESISTOR:
-                    if (checkCollectionByName(node.getElements().getResistors(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getResistor(), data.getValue())) return true;
                     break;
                 case SWITCH:
-                    if (checkCollectionByName(node.getElements().getSwitches(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getSwitch(), data.getValue())) return true;
                     break;
                 case TRANSISTOR:
-                    if (checkCollectionByName(node.getElements().getTransistors(), data.getValue())) return true;
+                    if (checkCollectionByName(node.getElements().getTransistor(), data.getValue())) return true;
                     break;
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
@@ -74,19 +74,53 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    if (checkCollectionByValue(node.getElements().getCapacitors(), value)) return true;
+                    for (Capacitor capacitor : node.getElements().getCapacitor()) {
+                        if (capacitor.getValue() == value) {
+                            return true;
+                        }
+                    }
                     break;
                 case DIODE:
-                    if (checkCollectionByValue(node.getElements().getDiodes(), value)) return true;
+                    for (Diode diode : node.getElements().getDiode()) {
+                        if (diode.getMaxCurrent() == value || diode.getMaxPotential() == value) {
+                            return true;
+                        }
+                    }
                     break;
                 case INDUCTOR:
-                    if (checkCollectionByValue(node.getElements().getInductors(), value)) return true;
+                    for (Inductor inductor : node.getElements().getInductor()) {
+                        if (inductor.getValue() == value) {
+                            return true;
+                        }
+                    }
                     break;
                 case RESISTOR:
-                    if (checkCollectionByValue(node.getElements().getResistors(), value)) return true;
+                    for (Resistor resistor : node.getElements().getResistor()) {
+                        if (resistor.getValue() == value) {
+                            return true;
+                        }
+                    }
                     break;
                 case TRANSISTOR:
-                    if (checkCollectionByValue(node.getElements().getTransistors(), value)) return true;
+                    for (Transistor transistor : node.getElements().getTransistor()) {
+                        if (transistor.getGain() == (int) value) {
+                            return true;
+                        }
+                    }
+                    break;
+                case SWITCH:
+                    boolean en;
+                    try {
+                         en = Boolean.valueOf(data.getValue());
+                    } catch (RuntimeException re) {
+                        return false;
+                    }
+
+                    for (Switch mSwitch : node.getElements().getSwitch()) {
+                        if (mSwitch.isEnabled() == en) {
+                            return true;
+                        }
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
@@ -109,22 +143,22 @@ public class ExistValidator implements UserValidator {
         for (Node node : nodes) {
             switch (data.getElement()) {
                 case CAPACITOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getCapacitors().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getCapacitor().size()) return true;
                     break;
                 case DIODE:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getDiodes().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getDiode().size()) return true;
                     break;
                 case INDUCTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getInductors().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getInductor().size()) return true;
                     break;
                 case RESISTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getResistors().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getResistor().size()) return true;
                     break;
                 case SWITCH:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getSwitches().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getSwitch().size()) return true;
                     break;
                 case TRANSISTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getTransistors().size()) return true;
+                    if (Integer.valueOf(data.getValue()) == node.getElements().getTransistor().size()) return true;
                     break;
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
@@ -136,15 +170,6 @@ public class ExistValidator implements UserValidator {
     private boolean checkCollectionByName(List<? extends Element> elements, String name) {
         for (Element element : elements) {
             if (element.getName().equalsIgnoreCase(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean checkCollectionByValue(List<? extends Element> elements, Double value) {
-        for (Element element : elements) {
-            if (element.getValue() == value) {
                 return true;
             }
         }

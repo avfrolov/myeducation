@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<circuit xmlns="http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/">
+    <node from="1" to="4">
+        <elements>
+            <resistor name="R1">
+                <countOfInputs>2</countOfInputs>
+                <value>1.5</value>
+            </resistor>
+        </elements>
+    </node>
+    <node from="1" to="3">
+        <elements>
+            <transistor name="tr1">
+                <countOfInputs>2</countOfInputs>
+                <gain>2</gain>
+            </transistor>
+        </elements>
+    </node>
+    <node from="4" to="2">
+        <elements>
+            <capacitor name="C1">
+                <countOfInputs>2</countOfInputs>
+                <value>0.001</value>
+            </capacitor>
+        </elements>
+    </node>
+    <node from="4" to="3">
+        <elements>
+            <inductor name="L1">
+                <countOfInputs>2</countOfInputs>
+                <value>10.0</value>
+            </inductor>
+        </elements>
+    </node>
+    <node from="2" to="3">
+        <elements>
+            <switch name="sw1">
+                <countOfInputs>2</countOfInputs>
+                <enabled>true</enabled>
+            </switch>
+        </elements>
+    </node>
+</circuit>

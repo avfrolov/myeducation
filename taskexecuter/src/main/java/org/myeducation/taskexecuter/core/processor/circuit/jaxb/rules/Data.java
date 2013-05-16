@@ -16,7 +16,6 @@ import org.jvnet.jaxb2_commons.lang.ToString;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
-import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementType;
 
 
 /**
@@ -29,7 +28,7 @@ import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementTy
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="element" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}ElementType"/>
+ *         &lt;element name="element" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}ElementType"/>
  *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -40,7 +39,7 @@ import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.ElementTy
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Data", namespace = "http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/", propOrder = {
+@XmlType(name = "Data", propOrder = {
     "element",
     "value"
 })

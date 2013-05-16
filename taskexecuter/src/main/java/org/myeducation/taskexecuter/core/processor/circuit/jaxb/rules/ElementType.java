@@ -1,5 +1,5 @@
 
-package org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme;
+package org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;

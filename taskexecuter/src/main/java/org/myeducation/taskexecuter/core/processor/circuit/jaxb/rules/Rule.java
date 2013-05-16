@@ -41,7 +41,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Rule", namespace = "http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/", propOrder = {
+@XmlType(name = "Rule", propOrder = {
     "subtype",
     "data"
 })

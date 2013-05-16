@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -29,12 +30,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="resistors" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Resistor" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="capacitors" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Capacitor" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="inductors" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Inductor" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="transistors" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Transistor" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="diodes" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Diode" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="switches" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Switch" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="resistor" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Resistor" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="capacitor" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Capacitor" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="inductor" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Inductor" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="transistor" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Transistor" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="diode" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Diode" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="switch" type="{http://scheme.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Switch" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -45,37 +46,38 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Elements", propOrder = {
-    "resistors",
-    "capacitors",
-    "inductors",
-    "transistors",
-    "diodes",
-    "switches"
+    "resistor",
+    "capacitor",
+    "inductor",
+    "transistor",
+    "diode",
+    "_switch"
 })
 public class Elements
     implements Equals, HashCode, ToString
 {
 
-    protected List<Resistor> resistors;
-    protected List<Capacitor> capacitors;
-    protected List<Inductor> inductors;
-    protected List<Transistor> transistors;
-    protected List<Diode> diodes;
-    protected List<Switch> switches;
+    protected List<Resistor> resistor;
+    protected List<Capacitor> capacitor;
+    protected List<Inductor> inductor;
+    protected List<Transistor> transistor;
+    protected List<Diode> diode;
+    @XmlElement(name = "switch")
+    protected List<Switch> _switch;
 
     /**
-     * Gets the value of the resistors property.
+     * Gets the value of the resistor property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the resistors property.
+     * This is why there is not a <CODE>set</CODE> method for the resistor property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getResistors().add(newItem);
+     *    getResistor().add(newItem);
      * </pre>
      * 
      * 
@@ -85,26 +87,26 @@ public class Elements
      * 
      * 
      */
-    public List<Resistor> getResistors() {
-        if (resistors == null) {
-            resistors = new ArrayList<Resistor>();
+    public List<Resistor> getResistor() {
+        if (resistor == null) {
+            resistor = new ArrayList<Resistor>();
         }
-        return this.resistors;
+        return this.resistor;
     }
 
     /**
-     * Gets the value of the capacitors property.
+     * Gets the value of the capacitor property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the capacitors property.
+     * This is why there is not a <CODE>set</CODE> method for the capacitor property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCapacitors().add(newItem);
+     *    getCapacitor().add(newItem);
      * </pre>
      * 
      * 
@@ -114,26 +116,26 @@ public class Elements
      * 
      * 
      */
-    public List<Capacitor> getCapacitors() {
-        if (capacitors == null) {
-            capacitors = new ArrayList<Capacitor>();
+    public List<Capacitor> getCapacitor() {
+        if (capacitor == null) {
+            capacitor = new ArrayList<Capacitor>();
         }
-        return this.capacitors;
+        return this.capacitor;
     }
 
     /**
-     * Gets the value of the inductors property.
+     * Gets the value of the inductor property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the inductors property.
+     * This is why there is not a <CODE>set</CODE> method for the inductor property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getInductors().add(newItem);
+     *    getInductor().add(newItem);
      * </pre>
      * 
      * 
@@ -143,26 +145,26 @@ public class Elements
      * 
      * 
      */
-    public List<Inductor> getInductors() {
-        if (inductors == null) {
-            inductors = new ArrayList<Inductor>();
+    public List<Inductor> getInductor() {
+        if (inductor == null) {
+            inductor = new ArrayList<Inductor>();
         }
-        return this.inductors;
+        return this.inductor;
     }
 
     /**
-     * Gets the value of the transistors property.
+     * Gets the value of the transistor property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the transistors property.
+     * This is why there is not a <CODE>set</CODE> method for the transistor property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTransistors().add(newItem);
+     *    getTransistor().add(newItem);
      * </pre>
      * 
      * 
@@ -172,26 +174,26 @@ public class Elements
      * 
      * 
      */
-    public List<Transistor> getTransistors() {
-        if (transistors == null) {
-            transistors = new ArrayList<Transistor>();
+    public List<Transistor> getTransistor() {
+        if (transistor == null) {
+            transistor = new ArrayList<Transistor>();
         }
-        return this.transistors;
+        return this.transistor;
     }
 
     /**
-     * Gets the value of the diodes property.
+     * Gets the value of the diode property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the diodes property.
+     * This is why there is not a <CODE>set</CODE> method for the diode property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getDiodes().add(newItem);
+     *    getDiode().add(newItem);
      * </pre>
      * 
      * 
@@ -201,26 +203,26 @@ public class Elements
      * 
      * 
      */
-    public List<Diode> getDiodes() {
-        if (diodes == null) {
-            diodes = new ArrayList<Diode>();
+    public List<Diode> getDiode() {
+        if (diode == null) {
+            diode = new ArrayList<Diode>();
         }
-        return this.diodes;
+        return this.diode;
     }
 
     /**
-     * Gets the value of the switches property.
+     * Gets the value of the switch property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the switches property.
+     * This is why there is not a <CODE>set</CODE> method for the switch property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSwitches().add(newItem);
+     *    getSwitch().add(newItem);
      * </pre>
      * 
      * 
@@ -230,11 +232,11 @@ public class Elements
      * 
      * 
      */
-    public List<Switch> getSwitches() {
-        if (switches == null) {
-            switches = new ArrayList<Switch>();
+    public List<Switch> getSwitch() {
+        if (_switch == null) {
+            _switch = new ArrayList<Switch>();
         }
-        return this.switches;
+        return this._switch;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
@@ -246,56 +248,56 @@ public class Elements
         }
         final Elements that = ((Elements) object);
         {
-            List<Resistor> lhsResistors;
-            lhsResistors = (((this.resistors!= null)&&(!this.resistors.isEmpty()))?this.getResistors():null);
-            List<Resistor> rhsResistors;
-            rhsResistors = (((that.resistors!= null)&&(!that.resistors.isEmpty()))?that.getResistors():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "resistors", lhsResistors), LocatorUtils.property(thatLocator, "resistors", rhsResistors), lhsResistors, rhsResistors)) {
+            List<Resistor> lhsResistor;
+            lhsResistor = (((this.resistor!= null)&&(!this.resistor.isEmpty()))?this.getResistor():null);
+            List<Resistor> rhsResistor;
+            rhsResistor = (((that.resistor!= null)&&(!that.resistor.isEmpty()))?that.getResistor():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "resistor", lhsResistor), LocatorUtils.property(thatLocator, "resistor", rhsResistor), lhsResistor, rhsResistor)) {
                 return false;
             }
         }
         {
-            List<Capacitor> lhsCapacitors;
-            lhsCapacitors = (((this.capacitors!= null)&&(!this.capacitors.isEmpty()))?this.getCapacitors():null);
-            List<Capacitor> rhsCapacitors;
-            rhsCapacitors = (((that.capacitors!= null)&&(!that.capacitors.isEmpty()))?that.getCapacitors():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "capacitors", lhsCapacitors), LocatorUtils.property(thatLocator, "capacitors", rhsCapacitors), lhsCapacitors, rhsCapacitors)) {
+            List<Capacitor> lhsCapacitor;
+            lhsCapacitor = (((this.capacitor!= null)&&(!this.capacitor.isEmpty()))?this.getCapacitor():null);
+            List<Capacitor> rhsCapacitor;
+            rhsCapacitor = (((that.capacitor!= null)&&(!that.capacitor.isEmpty()))?that.getCapacitor():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "capacitor", lhsCapacitor), LocatorUtils.property(thatLocator, "capacitor", rhsCapacitor), lhsCapacitor, rhsCapacitor)) {
                 return false;
             }
         }
         {
-            List<Inductor> lhsInductors;
-            lhsInductors = (((this.inductors!= null)&&(!this.inductors.isEmpty()))?this.getInductors():null);
-            List<Inductor> rhsInductors;
-            rhsInductors = (((that.inductors!= null)&&(!that.inductors.isEmpty()))?that.getInductors():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "inductors", lhsInductors), LocatorUtils.property(thatLocator, "inductors", rhsInductors), lhsInductors, rhsInductors)) {
+            List<Inductor> lhsInductor;
+            lhsInductor = (((this.inductor!= null)&&(!this.inductor.isEmpty()))?this.getInductor():null);
+            List<Inductor> rhsInductor;
+            rhsInductor = (((that.inductor!= null)&&(!that.inductor.isEmpty()))?that.getInductor():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "inductor", lhsInductor), LocatorUtils.property(thatLocator, "inductor", rhsInductor), lhsInductor, rhsInductor)) {
                 return false;
             }
         }
         {
-            List<Transistor> lhsTransistors;
-            lhsTransistors = (((this.transistors!= null)&&(!this.transistors.isEmpty()))?this.getTransistors():null);
-            List<Transistor> rhsTransistors;
-            rhsTransistors = (((that.transistors!= null)&&(!that.transistors.isEmpty()))?that.getTransistors():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "transistors", lhsTransistors), LocatorUtils.property(thatLocator, "transistors", rhsTransistors), lhsTransistors, rhsTransistors)) {
+            List<Transistor> lhsTransistor;
+            lhsTransistor = (((this.transistor!= null)&&(!this.transistor.isEmpty()))?this.getTransistor():null);
+            List<Transistor> rhsTransistor;
+            rhsTransistor = (((that.transistor!= null)&&(!that.transistor.isEmpty()))?that.getTransistor():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "transistor", lhsTransistor), LocatorUtils.property(thatLocator, "transistor", rhsTransistor), lhsTransistor, rhsTransistor)) {
                 return false;
             }
         }
         {
-            List<Diode> lhsDiodes;
-            lhsDiodes = (((this.diodes!= null)&&(!this.diodes.isEmpty()))?this.getDiodes():null);
-            List<Diode> rhsDiodes;
-            rhsDiodes = (((that.diodes!= null)&&(!that.diodes.isEmpty()))?that.getDiodes():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "diodes", lhsDiodes), LocatorUtils.property(thatLocator, "diodes", rhsDiodes), lhsDiodes, rhsDiodes)) {
+            List<Diode> lhsDiode;
+            lhsDiode = (((this.diode!= null)&&(!this.diode.isEmpty()))?this.getDiode():null);
+            List<Diode> rhsDiode;
+            rhsDiode = (((that.diode!= null)&&(!that.diode.isEmpty()))?that.getDiode():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "diode", lhsDiode), LocatorUtils.property(thatLocator, "diode", rhsDiode), lhsDiode, rhsDiode)) {
                 return false;
             }
         }
         {
-            List<Switch> lhsSwitches;
-            lhsSwitches = (((this.switches!= null)&&(!this.switches.isEmpty()))?this.getSwitches():null);
-            List<Switch> rhsSwitches;
-            rhsSwitches = (((that.switches!= null)&&(!that.switches.isEmpty()))?that.getSwitches():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "switches", lhsSwitches), LocatorUtils.property(thatLocator, "switches", rhsSwitches), lhsSwitches, rhsSwitches)) {
+            List<Switch> lhsSwitch;
+            lhsSwitch = (((this._switch!= null)&&(!this._switch.isEmpty()))?this.getSwitch():null);
+            List<Switch> rhsSwitch;
+            rhsSwitch = (((that._switch!= null)&&(!that._switch.isEmpty()))?that.getSwitch():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "_switch", lhsSwitch), LocatorUtils.property(thatLocator, "_switch", rhsSwitch), lhsSwitch, rhsSwitch)) {
                 return false;
             }
         }
@@ -310,34 +312,34 @@ public class Elements
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            List<Resistor> theResistors;
-            theResistors = (((this.resistors!= null)&&(!this.resistors.isEmpty()))?this.getResistors():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "resistors", theResistors), currentHashCode, theResistors);
+            List<Resistor> theResistor;
+            theResistor = (((this.resistor!= null)&&(!this.resistor.isEmpty()))?this.getResistor():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "resistor", theResistor), currentHashCode, theResistor);
         }
         {
-            List<Capacitor> theCapacitors;
-            theCapacitors = (((this.capacitors!= null)&&(!this.capacitors.isEmpty()))?this.getCapacitors():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "capacitors", theCapacitors), currentHashCode, theCapacitors);
+            List<Capacitor> theCapacitor;
+            theCapacitor = (((this.capacitor!= null)&&(!this.capacitor.isEmpty()))?this.getCapacitor():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "capacitor", theCapacitor), currentHashCode, theCapacitor);
         }
         {
-            List<Inductor> theInductors;
-            theInductors = (((this.inductors!= null)&&(!this.inductors.isEmpty()))?this.getInductors():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "inductors", theInductors), currentHashCode, theInductors);
+            List<Inductor> theInductor;
+            theInductor = (((this.inductor!= null)&&(!this.inductor.isEmpty()))?this.getInductor():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "inductor", theInductor), currentHashCode, theInductor);
         }
         {
-            List<Transistor> theTransistors;
-            theTransistors = (((this.transistors!= null)&&(!this.transistors.isEmpty()))?this.getTransistors():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "transistors", theTransistors), currentHashCode, theTransistors);
+            List<Transistor> theTransistor;
+            theTransistor = (((this.transistor!= null)&&(!this.transistor.isEmpty()))?this.getTransistor():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "transistor", theTransistor), currentHashCode, theTransistor);
         }
         {
-            List<Diode> theDiodes;
-            theDiodes = (((this.diodes!= null)&&(!this.diodes.isEmpty()))?this.getDiodes():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "diodes", theDiodes), currentHashCode, theDiodes);
+            List<Diode> theDiode;
+            theDiode = (((this.diode!= null)&&(!this.diode.isEmpty()))?this.getDiode():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "diode", theDiode), currentHashCode, theDiode);
         }
         {
-            List<Switch> theSwitches;
-            theSwitches = (((this.switches!= null)&&(!this.switches.isEmpty()))?this.getSwitches():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "switches", theSwitches), currentHashCode, theSwitches);
+            List<Switch> theSwitch;
+            theSwitch = (((this._switch!= null)&&(!this._switch.isEmpty()))?this.getSwitch():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "_switch", theSwitch), currentHashCode, theSwitch);
         }
         return currentHashCode;
     }
@@ -363,34 +365,34 @@ public class Elements
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            List<Resistor> theResistors;
-            theResistors = (((this.resistors!= null)&&(!this.resistors.isEmpty()))?this.getResistors():null);
-            strategy.appendField(locator, this, "resistors", buffer, theResistors);
+            List<Resistor> theResistor;
+            theResistor = (((this.resistor!= null)&&(!this.resistor.isEmpty()))?this.getResistor():null);
+            strategy.appendField(locator, this, "resistor", buffer, theResistor);
         }
         {
-            List<Capacitor> theCapacitors;
-            theCapacitors = (((this.capacitors!= null)&&(!this.capacitors.isEmpty()))?this.getCapacitors():null);
-            strategy.appendField(locator, this, "capacitors", buffer, theCapacitors);
+            List<Capacitor> theCapacitor;
+            theCapacitor = (((this.capacitor!= null)&&(!this.capacitor.isEmpty()))?this.getCapacitor():null);
+            strategy.appendField(locator, this, "capacitor", buffer, theCapacitor);
         }
         {
-            List<Inductor> theInductors;
-            theInductors = (((this.inductors!= null)&&(!this.inductors.isEmpty()))?this.getInductors():null);
-            strategy.appendField(locator, this, "inductors", buffer, theInductors);
+            List<Inductor> theInductor;
+            theInductor = (((this.inductor!= null)&&(!this.inductor.isEmpty()))?this.getInductor():null);
+            strategy.appendField(locator, this, "inductor", buffer, theInductor);
         }
         {
-            List<Transistor> theTransistors;
-            theTransistors = (((this.transistors!= null)&&(!this.transistors.isEmpty()))?this.getTransistors():null);
-            strategy.appendField(locator, this, "transistors", buffer, theTransistors);
+            List<Transistor> theTransistor;
+            theTransistor = (((this.transistor!= null)&&(!this.transistor.isEmpty()))?this.getTransistor():null);
+            strategy.appendField(locator, this, "transistor", buffer, theTransistor);
         }
         {
-            List<Diode> theDiodes;
-            theDiodes = (((this.diodes!= null)&&(!this.diodes.isEmpty()))?this.getDiodes():null);
-            strategy.appendField(locator, this, "diodes", buffer, theDiodes);
+            List<Diode> theDiode;
+            theDiode = (((this.diode!= null)&&(!this.diode.isEmpty()))?this.getDiode():null);
+            strategy.appendField(locator, this, "diode", buffer, theDiode);
         }
         {
-            List<Switch> theSwitches;
-            theSwitches = (((this.switches!= null)&&(!this.switches.isEmpty()))?this.getSwitches():null);
-            strategy.appendField(locator, this, "switches", buffer, theSwitches);
+            List<Switch> theSwitch;
+            theSwitch = (((this._switch!= null)&&(!this._switch.isEmpty()))?this.getSwitch():null);
+            strategy.appendField(locator, this, "_switch", buffer, theSwitch);
         }
         return buffer;
     }
