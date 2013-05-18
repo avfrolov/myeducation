@@ -8,6 +8,8 @@ import org.myeducation.taskexecuter.core.processor.circuit.transformator.Transfo
 import processor.circuit.helper.CircuitHelper;
 import processor.circuit.helper.RulesHelper;
 
+import java.io.File;
+
 /**
  * Created with IntelliJ IDEA.
  * User: andrey
@@ -41,5 +43,47 @@ public class TransformatorTest {
         Rules rules = RulesHelper.create();
         rules.getRule().clear();
         Assert.assertNull(Transformator.rules2File(rules));
+    }
+
+    @Test
+    public void testCorrectFile2Circuit() throws Exception {
+        File file = new File("taskexecuter/files/circuit/correct.xml");
+        Circuit c = Transformator.file2Circuit(file);
+        Assert.assertNotNull(c);
+    }
+
+    @Test
+    public void testIncorrectFile2Circuit() throws Exception {
+        File file = new File("");
+        Circuit c = Transformator.file2Circuit(file);
+        Assert.assertNull(c);
+    }
+
+    @Test
+    public void testIncorrectFile2Circuit2() throws Exception {
+        File file = new File("taskexecuter/files/circuit/incorrect.xml");
+        Circuit c = Transformator.file2Circuit(file);
+        Assert.assertNull(c);
+    }
+
+    @Test
+    public void testCorrectFile2Rules() throws Exception {
+        File file = new File("taskexecuter/files/rules/correct.xml");
+        Rules r = Transformator.file2Rules(file);
+        Assert.assertNotNull(r);
+    }
+
+    @Test
+    public void testIncorrectFile2Rules() throws Exception {
+        File file = new File("taskexecuter/files/circuit/correct.xml");
+        Rules r = Transformator.file2Rules(file);
+        Assert.assertNull(r);
+    }
+
+    @Test
+    public void testIncorrectFile2Rules2() throws Exception {
+        File file = new File("taskexecuter/files/rules/incorrect.xml");
+        Rules r = Transformator.file2Rules(file);
+        Assert.assertNull(r);
     }
 }

@@ -12,9 +12,10 @@ import java.io.File;
  * To change this template use File | Settings | File Templates.
  */
 public class DataSourceUtil {
-    public static Object getSource(String sourceString){
-        if (sourceString.matches("file:.+")){
-            return new File(PropertiesFactory.getProperties("filesystem")+File.separator+sourceString.substring(5, sourceString.length()));
+    public static Object getSource(String sourceString) {
+        if (sourceString.matches("file:.+")) {
+            return new File(PropertiesFactory.getProperties("filesystem").getProperty("filepath") +
+                    File.separator + sourceString.substring(5, sourceString.length()));
         }
         return sourceString;
     }

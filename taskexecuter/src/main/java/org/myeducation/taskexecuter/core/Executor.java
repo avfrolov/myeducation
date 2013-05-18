@@ -7,9 +7,9 @@ import org.myeducation.databaseapi.model.ExecutorDataDto;
 import org.myeducation.databaseapi.service.Service;
 import org.myeducation.taskexecuter.core.processor.AbstractProcessor;
 import org.myeducation.taskexecuter.core.processor.KeywordProcessor;
+import org.myeducation.taskexecuter.core.processor.circuit.SchemeProcessor;
 import org.myeducation.taskexecuter.core.processor.program.java.JavaProcessor;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,39 +23,41 @@ import java.util.List;
 public class Executor {
     private HashMap<String, AbstractProcessor> availableProcessors = new HashMap<String, AbstractProcessor>();
 
-    public Executor(){
+    public Executor() {
         //init processors
         AbstractProcessor javaProcessor = new JavaProcessor();
         AbstractProcessor keywordProcessor = new KeywordProcessor();
+        AbstractProcessor schemeProcessor = new SchemeProcessor();
 
         availableProcessors.put(javaProcessor.getProcessorName(), javaProcessor);
         availableProcessors.put(keywordProcessor.getProcessorName(), keywordProcessor);
+        availableProcessors.put(schemeProcessor.getProcessorName(), schemeProcessor);
     }
 
-    public void processTestDatas(List<ExecutorDataDto> datas){
+    public void processTestDatas(List<ExecutorDataDto> datas) {
         List<ExecutorData> list = getTestDatas(datas);
-        for (ExecutorData data : list){
+        for (ExecutorData data : list) {
             processData(data.getData(), data.getTests());
         }
     }
 
-    public void processData(AttachData data, TestDatas datas){
+    public void processData(AttachData data, TestDatas datas) {
         String execType = datas.getExecType();
         AbstractProcessor processor = availableProcessors.get(execType);
-        if (processor != null){
+        if (processor != null) {
             processor.execute(data, datas);
-        }else{
+        } else {
             //no processors found
         }
     }
 
     //load data to execute
-    private List<ExecutorData> getTestDatas(List<ExecutorDataDto> datas){
+    private List<ExecutorData> getTestDatas(List<ExecutorDataDto> datas) {
         return Service.getFactory().executorSaveService().getExecuterData(datas);
     }
 
-    public void shutDown(){
-        for (AbstractProcessor processor : availableProcessors.values()){
+    public void shutDown() {
+        for (AbstractProcessor processor : availableProcessors.values()) {
             processor.shutDown();
         }
     }

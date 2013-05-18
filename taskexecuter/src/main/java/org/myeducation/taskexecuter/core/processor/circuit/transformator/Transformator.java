@@ -4,18 +4,17 @@ import org.apache.log4j.Logger;
 import org.myeducation.properties.PropertiesFactory;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rules;
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.scheme.Circuit;
-import org.myeducation.taskexecuter.core.processor.circuit.validator.CircuitValidator;
-import org.myeducation.taskexecuter.core.processor.circuit.validator.RuleValidator;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,22 +23,33 @@ import java.io.File;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Transformator implements CircuitValidator, RuleValidator {
+public class Transformator {
 
     private static final Logger LOGGER = Logger.getLogger(Transformator.class);
 
-    @Override
-    public boolean validate(Circuit circuit) {
-        return validate(circuit, PropertiesFactory.getProperties("processors").getProperty("processor.circuit.circuit.path"));
+    public static File circuit2File(Circuit circuit) {
+        return marshaller(circuit,
+                PropertiesFactory.getProperties("processors").getProperty("processor.circuit.circuit.path"));
     }
 
-    @Override
-    public boolean validate(Rules rules) {
-        return validate(rules, PropertiesFactory.getProperties("processors").getProperty("processor.circuit.rules.path"));
+    public static File rules2File(Rules rules) {
+        return marshaller(rules,
+                PropertiesFactory.getProperties("processors").getProperty("processor.circuit.rules.path"));
     }
 
-    private boolean validate(Object object, String pathToXsdSchema) {
+    public static Circuit file2Circuit(File file) {
+        return (Circuit) unmarshaller(file,
+                PropertiesFactory.getProperties("processors").getProperty("processor.circuit.circuit.path"), Circuit.class);
+    }
+
+    public static Rules file2Rules(File file) {
+        return (Rules) unmarshaller(file,
+                PropertiesFactory.getProperties("processors").getProperty("processor.circuit.rules.path"), Rules.class);
+    }
+
+    private static File marshaller(Object object, String pathToXsdSchema) {
         try {
+            File file = File.createTempFile("temp", "");
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema xsdSchema = schemaFactory.newSchema(new File(pathToXsdSchema));
 
@@ -47,16 +57,36 @@ public class Transformator implements CircuitValidator, RuleValidator {
 
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setSchema(xsdSchema);
-            marshaller.marshal(object, System.out);
-            marshaller.marshal(object, new DefaultHandler());  // DefaultHandler use a "/dev/null" implementation of a SAX processor
+            marshaller.marshal(object, file);
 
-            return true;
+            return file;
         } catch (JAXBException je) {
             LOGGER.error("Object " + object.toString() + " not valid", je);
-            return false;
+            return null;
         } catch (SAXException e) {
-            LOGGER.error("XML Schema by path: " + pathToXsdSchema + " not found", e);
-            return false;
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        } catch (IOException e) {
+            LOGGER.error("Can't create temp file", e);
+            return null;
+        }
+    }
+
+    private static Object unmarshaller(File file, String pathToXsdSchema, Class clazz) {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema xsdSchema = schemaFactory.newSchema(new File(pathToXsdSchema));
+            unmarshaller.setSchema(xsdSchema);
+            Object o = unmarshaller.unmarshal(file);
+            return o;
+        } catch (JAXBException e) {
+            LOGGER.error("File " + file.toString() + "doesn't contain a valid XML-Document", e);
+            return null;
+        } catch (SAXException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
         }
     }
 }

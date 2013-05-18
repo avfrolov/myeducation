@@ -13,7 +13,7 @@ import org.myeducation.taskexecuter.core.processor.circuit.validator.users.Exist
 public class UserValidatorFactory {
 
     public synchronized static UserValidator getValidator(RuleType type) {
-        AbstractValidator validator;
+        UserValidator validator;
         switch (type) {
             case EXIST:
                 validator = new ExistValidator();
