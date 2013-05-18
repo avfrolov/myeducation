@@ -1,4 +1,4 @@
-package org.myeducation.taskexecuter.core.processor.circuit.validator.required;
+package org.myeducation.taskexecuter.core.processor.circuit.transformator;
 
 import org.apache.log4j.Logger;
 import org.myeducation.properties.PropertiesFactory;
@@ -24,9 +24,9 @@ import java.io.File;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class SchemaValidator implements CircuitValidator, RuleValidator {
+public class Transformator implements CircuitValidator, RuleValidator {
 
-    private static final Logger LOGGER = Logger.getLogger(SchemaValidator.class);
+    private static final Logger LOGGER = Logger.getLogger(Transformator.class);
 
     @Override
     public boolean validate(Circuit circuit) {

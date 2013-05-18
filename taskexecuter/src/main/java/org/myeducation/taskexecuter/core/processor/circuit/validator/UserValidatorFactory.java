@@ -10,9 +10,9 @@ import org.myeducation.taskexecuter.core.processor.circuit.validator.users.Exist
  * Time: 22:15
  * To change this template use File | Settings | File Templates.
  */
-public class ValidatorFactory {
+public class UserValidatorFactory {
 
-    public synchronized static AbstractValidator getValidator(RuleType type) {
+    public synchronized static UserValidator getValidator(RuleType type) {
         AbstractValidator validator;
         switch (type) {
             case EXIST:
