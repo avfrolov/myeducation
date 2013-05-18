@@ -18,8 +18,8 @@ public class SchemeProcessorTest {
     private Executor executor = new Executor();
 
     @Test
-    public void testScheme() throws Exception{
-        TaskSend send = EntityHelper.createTask_createTaskSend_createTestResult2();
+    public void testScheme() throws Exception {
+        TaskSend send = EntityHelper.createTaskSend("taskexecuter/files/circuit/correct.xml", "taskexecuter/files/rules/correct.xml");
         AttachData attachData = send.getAttachDatas().iterator().next();
         executor.processData(attachData, attachData.getType().getTestDatas().iterator().next());
         executor.shutDown();

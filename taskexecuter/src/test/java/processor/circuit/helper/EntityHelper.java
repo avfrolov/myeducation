@@ -15,12 +15,12 @@ import java.util.Set;
  */
 public class EntityHelper {
 
-    public static TaskSend createTask_createTaskSend_createTestResult2() throws Exception {
+    public static TaskSend createTaskSend(String circuitPath, String rulesPath) throws Exception {
         Task task = new Task();
         task.setName("test simple scheme processor task");
         task.setDescription("this is description of simple task");
         AttachDataType attachDataType1 = new AttachDataType();
-        attachDataType1.setNamePattern("taskexecuter/files/circuit/correct.xml");
+        attachDataType1.setNamePattern(circuitPath);
         attachDataType1.setTask(task);
 
         TestDatas testDatas = new TestDatas();
@@ -30,7 +30,7 @@ public class EntityHelper {
         testDatas.setAttachDataType(attachDataType1);
 
         TestData testData1 = new TestData();
-        testData1.setInputData("file:taskexecuter/files/rules/correct.xml");
+        testData1.setInputData("file:" + rulesPath);
         testData1.setOutputData("true");
         testData1.setPoints(10);
         testData1.setTestDatas(testDatas);
