@@ -2,12 +2,14 @@ package org.myeducation.portal.client.widget;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.MouseDownEvent;
 import com.smartgwt.client.widgets.events.MouseDownHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.HStack;
+import org.myeducation.portal.client.MainPage;
 
 
 /**
@@ -37,7 +39,7 @@ public class LoginToolBar extends HLayout{
 
         Label banner = new Label();
         banner.setContents("<font color='white' size='4em' family='Geneva'>" +
-                            "MYeducation" +
+                            "MyEducation" +
                             "</font>");
         banner.setWidth100();
         banner.setBackgroundColor(color);
@@ -54,22 +56,7 @@ public class LoginToolBar extends HLayout{
             }
         });
 
-        HyperLinkButton faqLink = new HyperLinkButton("FAQ");
-        faqLink.addMouseDownHandler(new MouseDownHandler() {
-            public void onMouseDown(MouseDownEvent mouseDownEvent) {
-                Window.Location.assign(GWT.getHostPageBaseURL()+"FAQ.html"+devMode);
-            }
-        });
-        HyperLinkButton aboutLink = new HyperLinkButton("О проекте");
-        aboutLink.addMouseDownHandler(new MouseDownHandler() {
-            public void onMouseDown(MouseDownEvent mouseDownEvent) {
-                Window.Location.assign(GWT.getHostPageBaseURL()+"About.html"+devMode);
-            }
-        });
-
         linkPanel.addMember(userLogin);
-        linkPanel.addMember(faqLink);
-        linkPanel.addMember(aboutLink);
 
         addMember(banner);
         addMember(linkPanel);
