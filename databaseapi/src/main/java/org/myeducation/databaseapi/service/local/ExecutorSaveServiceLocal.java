@@ -37,7 +37,7 @@ public class ExecutorSaveServiceLocal implements ExecutorSaveService {
             e.printStackTrace();
         }
         byte[] array = stream.toByteArray();
-        if ( array == null || array.length == 0 )  return;
+        if (array == null || array.length == 0) return;
         String resultData = new String(array);
 
         testDataResult.setSuccess(result.isSuccess());
@@ -50,11 +50,11 @@ public class ExecutorSaveServiceLocal implements ExecutorSaveService {
 
     public List<ExecutorData> getExecuterData(List<ExecutorDataDto> dto) {
         List<ExecutorData> result = new ArrayList<ExecutorData>(dto.size());
-        for (ExecutorDataDto dataDto : dto){
+        for (ExecutorDataDto dataDto : dto) {
             Object[] temp = dao.getExecuteData(dataDto.getDataId(), dataDto.getTestsId());
             ExecutorData data = new ExecutorData();
-            data.setData((AttachData)temp[0]);
-            data.setTests((TestDatas)temp[1]);
+            data.setData((AttachData) temp[0]);
+            data.setTests((TestDatas) temp[1]);
         }
         return result;
     }
@@ -62,10 +62,11 @@ public class ExecutorSaveServiceLocal implements ExecutorSaveService {
     public List<ExecutorDataDto> getNewExecutorData() {
         List<Object[]> data = dao.getNotProcessTestDatas();
         ArrayList<ExecutorDataDto> result = new ArrayList(data.size());
-        for (Object[] dataElement : data){
+        for (Object[] dataElement : data) {
             ExecutorDataDto dataDto = new ExecutorDataDto();
-            dataDto.setDataId(((BigInteger)dataElement[0]).longValue());
-            dataDto.setTestsId(((BigInteger)dataElement[1]).longValue());
+            dataDto.setDataId((Long) dataElement[0]);
+            dataDto.setTestsId(((Long) dataElement[1]).longValue());
+            result.add(dataDto);
         }
         return result;
     }

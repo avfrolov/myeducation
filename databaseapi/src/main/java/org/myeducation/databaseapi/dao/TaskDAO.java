@@ -17,10 +17,11 @@ import java.util.Set;
  */
 public interface TaskDAO {
     void addTask(Task task);
-    void addTaskSend(TaskSend taskSend);
+    TaskSend addTaskSend(TaskSend taskSend);
     void addTestResult(TestDataResult result);
     Task getTask(long id);
     TaskSend getTaskSend(long id);
+    TestDataResult getResult(long testDataId);
     List<Object[]> getNotProcessTestDatas();
     Object[] getExecuteData(Long dataId, Long testsId);
 }

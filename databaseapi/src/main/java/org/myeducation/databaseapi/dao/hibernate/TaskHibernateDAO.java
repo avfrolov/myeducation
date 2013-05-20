@@ -24,12 +24,13 @@ public class TaskHibernateDAO implements TaskDAO {
 
     private EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("server");
 
-    public void addTask(Task task){
+    public void addTask(Task task) {
         storeObject(task);
     }
 
-    public void addTaskSend(TaskSend taskSend) {
-        mergeObject(taskSend);
+    public TaskSend addTaskSend(TaskSend taskSend) {
+        taskSend = (TaskSend)mergeObject(taskSend);
+        return taskSend;
     }
 
     public void addTestResult(TestDataResult result) {
@@ -38,35 +39,45 @@ public class TaskHibernateDAO implements TaskDAO {
 
     public Task getTask(long id) {
         EntityManager manager = managerFactory.createEntityManager();
-        Task task = (Task)manager.createQuery("select task from Task as task where task.id=:id").setParameter("id", id).getSingleResult();
+        Task task = (Task) manager.createQuery("select task from Task as task where task.id=:id").setParameter("id", id).getSingleResult();
         manager.close();
         return task;
     }
 
     public TaskSend getTaskSend(long id) {
         EntityManager manager = managerFactory.createEntityManager();
-        TaskSend tasksend = (TaskSend)manager.createQuery("select tasksend from TaskSend as tasksend where tasksend.id=:id").setParameter("id", id).getSingleResult();
+        TaskSend tasksend = (TaskSend) manager.createQuery("select tasksend from TaskSend as tasksend where tasksend.id=:id").setParameter("id", id).getSingleResult();
         manager.close();
         return tasksend;
     }
 
-    public List<Object[]> getNotProcessTestDatas(){
+    public List<Object[]> getNotProcessTestDatas() {
         EntityManager manager = managerFactory.createEntityManager();
         List<Object[]> result = manager.createQuery("select file.id, test.id from AttachData file, TestDatas test " +
-                                                    "where not exists (from TestDataResult as result where result.attachData=file and result.testData in elements(test.testDatas))").getResultList();
+                "where not exists (from TestDataResult as result where result.attachData=file and result.testData in elements(test.testDatas))").getResultList();
+//        List<Object[]> result = manager.createQuery("select  file.id, test.id from AttachData file, TestDatas test where not in " +
+//                "(from TestDataResult as result where result.attachData=file and result.t)")
         manager.close();
         return result;
     }
 
-    public Object[] getExecuteData(Long dataId, Long testsId){
+    public Object[] getExecuteData(Long dataId, Long testsId) {
         EntityManager manager = managerFactory.createEntityManager();
-        Object[] result = (Object[])manager.createQuery("select file, tests from AttachData as file, TestDatas as tests where file.id=:dataId and tests.id=:testsId")
-                                                    .setParameter("dataId", dataId).setParameter("testsId", testsId).getSingleResult();
+        Object[] result = (Object[]) manager.createQuery("select file, tests from AttachData as file, TestDatas as tests where file.id=:dataId and tests.id=:testsId")
+                .setParameter("dataId", dataId).setParameter("testsId", testsId).getSingleResult();
         manager.close();
         return result;
     }
 
-    protected void storeObject(Object o){
+    public TestDataResult getResult(long testDataId) {
+        EntityManager manager = managerFactory.createEntityManager();
+        TestDataResult result = (TestDataResult) manager.createQuery("select result from TestDataResult as result where result.testData.id=:testDataId")
+                .setParameter("testDataId", testDataId).getSingleResult();
+        manager.close();
+        return result;
+    }
+
+    protected void storeObject(Object o) {
         EntityManager manager = managerFactory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         transaction.begin();
@@ -75,12 +86,13 @@ public class TaskHibernateDAO implements TaskDAO {
         manager.close();
     }
 
-    protected void mergeObject(Object o){
+    protected Object mergeObject(Object o) {
         EntityManager manager = managerFactory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         transaction.begin();
-        manager.merge(o);
+        o = manager.merge(o);
         transaction.commit();
         manager.close();
+        return o;
     }
 }

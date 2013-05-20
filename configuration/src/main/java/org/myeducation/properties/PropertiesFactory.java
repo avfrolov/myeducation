@@ -24,14 +24,17 @@ public class PropertiesFactory {
                 String fileName = propName + ".properties";
                 String folder = "properties";
                 String module = "configuration";
-//                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
-                String fullPath = System.getProperty("user.dir") + File.separator + module + File.separator + folder + File.separator + fileName;
-                properties.load(new FileReader(fullPath));
+                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
+//                String fullPath = System.getProperty("user.dir") + File.separator + module + File.separator + folder + File.separator + fileName;
+//                properties.load(new FileReader(fullPath));
+                properties.load(new FileReader("/Users/andrey/Documents/workspace/myeducation/configuration/properties/" + fileName));   //TODO
                 result = properties;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            propertiesMap.put(propName, result);
+            if (result != null) {
+                propertiesMap.put(propName, result);
+            }
             return result;
         } else {
             return propertiesMap.get(propName);

@@ -31,10 +31,10 @@ public class MasterLauncher {
         int slavecount = Integer.parseInt(properties.getProperty("slave.mincount"));
         if (slavecount < 1) return;
 
-        System.out.println("Waiting for "+slavecount+" slaves");
-        for (int i=0; i<slavecount; i++){
+        System.out.println("Waiting for " + slavecount + " slaves");
+        for (int i = 0; i < slavecount; i++) {
             Socket socket = serverSocket.accept();
-            System.out.println("Connect slave : "+socket.getInetAddress().getCanonicalHostName());
+            System.out.println("Connect slave : " + socket.getInetAddress().getCanonicalHostName());
             avaliableSlaves.add(socket);
         }
         Timer timer = new Timer();
@@ -44,12 +44,12 @@ public class MasterLauncher {
                 List<ExecutorDataDto> dataList = service.getNewExecutorData();
                 Iterator<ClusterPack> packs = getPackages(dataList).iterator();
                 Iterator<Socket> slavesIterator = avaliableSlaves.iterator();
-                while (packs.hasNext()){
+                while (packs.hasNext()) {
                     ClusterPack current = packs.next();
                     Socket socket = null;
-                    if (slavesIterator.hasNext()){
+                    if (slavesIterator.hasNext()) {
                         socket = slavesIterator.next();
-                    }else{
+                    } else {
                         slavesIterator = avaliableSlaves.iterator();
                         socket = slavesIterator.next();
                     }
@@ -65,9 +65,9 @@ public class MasterLauncher {
         }, new Date(), 2000);
     }
 
-    public static List<ClusterPack> getPackages(Iterable<ExecutorDataDto> data){
+    public static List<ClusterPack> getPackages(Iterable<ExecutorDataDto> data) {
         List<ClusterPack> list = new ArrayList<ClusterPack>();
-        for (ExecutorDataDto executorDataDto : data){
+        for (ExecutorDataDto executorDataDto : data) {
             ClusterPack clusterPack = new ClusterPack();
             clusterPack.setTime(System.currentTimeMillis());
             ArrayList dataList = new ArrayList(1);

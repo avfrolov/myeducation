@@ -82,19 +82,19 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
-                <classifier>sources</classifier>
-                <scope>test</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>javax.validation</groupId>-->
+                <!--<artifactId>validation-api</artifactId>-->
+                <!--<version>1.0.0.GA</version>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>javax.validation</groupId>-->
+                <!--<artifactId>validation-api</artifactId>-->
+                <!--<version>1.0.0.GA</version>-->
+                <!--<classifier>sources</classifier>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>com.smartgwt</groupId>
                 <artifactId>smartgwt</artifactId>
@@ -123,6 +123,18 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>javax.validation</groupId>-->
+                <!--<artifactId>validation-api</artifactId>-->
+                <!--<version>1.0.0.GA</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>4.2.0.Final</version>
             </dependency>
 
             <dependency>
