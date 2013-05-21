@@ -55,6 +55,7 @@ public class ExecutorSaveServiceLocal implements ExecutorSaveService {
             ExecutorData data = new ExecutorData();
             data.setData((AttachData) temp[0]);
             data.setTests((TestDatas) temp[1]);
+            result.add(data);
         }
         return result;
     }

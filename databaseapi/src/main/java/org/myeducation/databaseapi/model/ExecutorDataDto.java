@@ -1,5 +1,7 @@
 package org.myeducation.databaseapi.model;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: kirilkadurilka
@@ -7,7 +9,8 @@ package org.myeducation.databaseapi.model;
  * Time: 23:55
  * To change this template use File | Settings | File Templates.
  */
-public class ExecutorDataDto {
+public class ExecutorDataDto implements Serializable{
+
     private long dataId;
     private long testsId;
 
