@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rules xmlns="http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/">
+    <rule type="EXIST">
+        <subtype>NAME</subtype>
+        <data>
+            <element>RESISTOR</element>
+            <value>R1</value>
+        </data>
+    </rule>
+    <rule type="ENABLED"/>
+</rules>

@@ -47,7 +47,7 @@ public class TransformatorTest {
 
     @Test
     public void testCorrectFile2Circuit() throws Exception {
-        File file = new File("taskexecuter/files/circuit/correct.xml");
+        File file = new File("taskexecuter/files/circuit/correct1.xml");
         Circuit c = Transformator.file2Circuit(file);
         Assert.assertNotNull(c);
     }
@@ -61,28 +61,28 @@ public class TransformatorTest {
 
     @Test
     public void testIncorrectFile2Circuit2() throws Exception {
-        File file = new File("taskexecuter/files/circuit/incorrect.xml");
+        File file = new File("taskexecuter/files/circuit/incorrect1.xml");
         Circuit c = Transformator.file2Circuit(file);
         Assert.assertNull(c);
     }
 
     @Test
     public void testCorrectFile2Rules() throws Exception {
-        File file = new File("taskexecuter/files/rules/correct.xml");
+        File file = new File("taskexecuter/files/rules/correct1.xml");
         Rules r = Transformator.file2Rules(file);
         Assert.assertNotNull(r);
     }
 
     @Test
     public void testIncorrectFile2Rules() throws Exception {
-        File file = new File("taskexecuter/files/circuit/correct.xml");
+        File file = new File("taskexecuter/files/circuit/correct1.xml");
         Rules r = Transformator.file2Rules(file);
         Assert.assertNull(r);
     }
 
     @Test
     public void testIncorrectFile2Rules2() throws Exception {
-        File file = new File("taskexecuter/files/rules/incorrect.xml");
+        File file = new File("taskexecuter/files/rules/incorrect1.xml");
         Rules r = Transformator.file2Rules(file);
         Assert.assertNull(r);
     }

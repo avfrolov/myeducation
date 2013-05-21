@@ -17,7 +17,7 @@ public class DataSourceUtilTest {
 
     @Test
     public void testCorrectFileName() throws Exception {
-        String str = "file:taskexecuter/files/circuit/correct.xml";
+        String str = "file:taskexecuter/files/circuit/correct1.xml";
         File file = (File) DataSourceUtil.getSource(str);
         Assert.assertNotNull(file);
     }
