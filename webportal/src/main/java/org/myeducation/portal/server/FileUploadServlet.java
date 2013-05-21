@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.myeducation.databaseapi.entities.TestDataResult;
+import org.myeducation.properties.PropertiesFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,7 @@ import java.util.List;
 public class FileUploadServlet extends HttpServlet {
 
     //TODO
-    private static final String UPLOAD_DIRECTORY = "/Volumes/Dev/Example/";
+    private static final String UPLOAD_DIRECTORY = PropertiesFactory.getProperties("filesystem").getProperty("filepath");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -70,7 +71,7 @@ public class FileUploadServlet extends HttpServlet {
                         fileName = fileName.substring(0, dotIndex) + System.nanoTime() + fileName.substring(dotIndex);
                     }
 
-                    File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
+                    File uploadedFile = new File(UPLOAD_DIRECTORY + File.separator, fileName);
 
                     if (fileName.contains("circuit")) {
                         circuit = uploadedFile;
