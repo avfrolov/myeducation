@@ -24,7 +24,7 @@ public class SlaveLauncher {
         final Executor executor = new Executor();
 
         final Socket socket = new Socket(properties.getProperty("master.address"), Integer.parseInt(properties.getProperty("master.port")));
-        ObjectInputStream dataReader = new ObjectInputStream(socket.getInputStream());
+
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -43,6 +43,7 @@ public class SlaveLauncher {
         }));
 
         while (true){
+            ObjectInputStream dataReader = new ObjectInputStream(socket.getInputStream());
             System.out.println("Waiting for new data....");
             ClusterPack data = (ClusterPack)dataReader.readObject();
             executor.processTestDatas(data.getData());

@@ -2,6 +2,7 @@ package org.myeducation.taskexecuter.core.model;
 
 import org.myeducation.databaseapi.model.ExecutorDataDto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * Time: 12:36
  * To change this template use File | Settings | File Templates.
  */
-public class ClusterPack {
+public class ClusterPack implements Serializable{
 
     private long time;
     private List<ExecutorDataDto> data;

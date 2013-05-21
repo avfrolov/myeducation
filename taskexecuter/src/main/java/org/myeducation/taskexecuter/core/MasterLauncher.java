@@ -8,6 +8,7 @@ import org.myeducation.taskexecuter.core.model.ClusterPack;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -55,8 +56,12 @@ public class MasterLauncher {
                     }
 
                     try {
-                        ObjectOutputStream stream = new ObjectOutputStream(socket.getOutputStream());
+                        OutputStream os = socket.getOutputStream();
+                        ObjectOutputStream stream = new ObjectOutputStream(os);
                         stream.writeObject(current);
+                        stream.flush();
+//                        stream.reset();
+//                        os.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -73,6 +78,7 @@ public class MasterLauncher {
             ArrayList dataList = new ArrayList(1);
             dataList.add(executorDataDto);
             clusterPack.setData(dataList);
+            list.add(clusterPack);
         }
         return list;
     }
