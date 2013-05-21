@@ -1,6 +1,7 @@
 package org.myeducation.taskexecuter.core.processor.circuit.validator;
 
 import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.RuleType;
+import org.myeducation.taskexecuter.core.processor.circuit.validator.users.EnabledValidator;
 import org.myeducation.taskexecuter.core.processor.circuit.validator.users.ExistValidator;
 
 /**
@@ -17,6 +18,9 @@ public class UserValidatorFactory {
         switch (type) {
             case EXIST:
                 validator = new ExistValidator();
+                break;
+            case ENABLED:
+                validator = new EnabledValidator();
                 break;
             default:
                 throw new IllegalArgumentException("Rule type = " + type.name() + "doesn't supported");

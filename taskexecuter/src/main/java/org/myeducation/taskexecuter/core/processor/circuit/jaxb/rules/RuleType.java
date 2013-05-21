@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="RuleType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="EXIST"/>
+ *     &lt;enumeration value="ENABLED"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -23,7 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum RuleType {
 
-    EXIST;
+    EXIST,
+    ENABLED;
 
     public String value() {
         return name();
