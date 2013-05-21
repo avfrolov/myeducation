@@ -22,12 +22,14 @@ public class PropertiesFactory {
             try {
                 Properties properties = new Properties();
                 String fileName = propName + ".properties";
-                String folder = "properties";
-                String module = "configuration";
-                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
+//                String folder = "properties";
+//                String module = "configuration";
+//                String fullPath = ".."+File.separator+module + File.separator + folder + File.separator + fileName;
 //                String fullPath = System.getProperty("user.dir") + File.separator + module + File.separator + folder + File.separator + fileName;
 //                properties.load(new FileReader(fullPath));
-                properties.load(new FileReader("/Users/andrey/Documents/workspace/myeducation/configuration/properties/" + fileName));   //TODO
+//                properties.load(new FileReader("/Users/andrey/Documents/workspace/myeducation/configuration/properties/" + fileName));   //TODO
+                String path = ExecutorPath.getExecutorPath();
+                properties.load(new FileReader(path + fileName));
                 result = properties;
             } catch (Exception ex) {
                 ex.printStackTrace();
