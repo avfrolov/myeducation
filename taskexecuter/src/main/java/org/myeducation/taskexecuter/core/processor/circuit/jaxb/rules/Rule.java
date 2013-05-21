@@ -4,7 +4,6 @@ package org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -29,8 +28,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="subtype" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}ExistSubType"/>
- *         &lt;element name="data" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Data"/>
+ *         &lt;element name="subtype" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}ExistSubType" minOccurs="0"/>
+ *         &lt;element name="data" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}Data" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="type" use="required" type="{http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/}RuleType" />
  *     &lt;/restriction>
@@ -49,9 +48,7 @@ public class Rule
     implements Equals, HashCode, ToString
 {
 
-    @XmlElement(required = true)
     protected ExistSubType subtype;
-    @XmlElement(required = true)
     protected Data data;
     @XmlAttribute(name = "type", required = true)
     protected RuleType type;

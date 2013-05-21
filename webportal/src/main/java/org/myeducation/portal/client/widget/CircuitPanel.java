@@ -21,6 +21,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 public class CircuitPanel extends VLayout {
 
     private static final String UPLOAD_ACTION_URL = GWT.getModuleBaseURL() + "upload";
+    private static final String RESULT_STRING = "<font color='black' size='4em' family='Geneva'>Result </font>";
 
     public CircuitPanel() {
         init();
@@ -52,7 +53,8 @@ public class CircuitPanel extends VLayout {
 
         Button startButton = new Button("Start");
 
-        final Label resultLabel = new Label("<font color='black' size='4em' family='Geneva'>Result </font>");
+        final Label resultLabel = new Label();
+        resultLabel.setWidth100();
 
         panel.add(circuitLabel);
         panel.add(circuitUpload);
@@ -86,12 +88,12 @@ public class CircuitPanel extends VLayout {
         form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
             @Override
             public void onSubmitComplete(FormPanel.SubmitCompleteEvent submitCompleteEvent) {
-                Boolean res =  submitCompleteEvent.getResults().contains("true");
-                    String color = res? "blue" : "red";
+                Boolean res = submitCompleteEvent.getResults().contains("not");
+                String color = res ? "red" : "blue";
                 if (res) {
-                    resultLabel.setContents(resultLabel.getContents() + "<font color='" + color +"' size='4em' family='Geneva'>" + res + "</font> ");
+                    resultLabel.setContents(RESULT_STRING + "<font color='" + color + "' size='4em' family='Geneva'>" + submitCompleteEvent.getResults() + "</font>");
                 } else {
-                    resultLabel.setContents(resultLabel.getContents() + "<font color='red' size='4em' family='Geneva'>" + submitCompleteEvent.getResults() + "</font> ");
+                    resultLabel.setContents(RESULT_STRING + "<font color='red' size='4em' family='Geneva'>" + submitCompleteEvent.getResults() + "</font>");
                 }
             }
         });

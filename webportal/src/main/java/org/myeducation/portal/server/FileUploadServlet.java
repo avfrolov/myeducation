@@ -80,14 +80,12 @@ public class FileUploadServlet extends HttpServlet {
 
                     if (uploadedFile.createNewFile()) {
                         item.write(uploadedFile);
-//                        resp.setStatus(HttpServletResponse.SC_CREATED);
-                        resp.flushBuffer();
                     } else
                         throw new IOException("The file already exists in repository.");
 
                 }
                 TestDataResult result = TaskSender.sendTask(circuit, rules);
-                resp.getWriter().write(Boolean.toString(result.isSuccess()));
+                resp.getWriter().write(result.isSuccess() ? "Circuit valid" : "Circuit not valid");
                 resp.flushBuffer();
             } catch (Exception e) {
                 resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
