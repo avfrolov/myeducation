@@ -23,7 +23,7 @@ public class TaskSender {
         task.setName("scheme processor task");
         task.setDescription("description of scheme processor task");
         AttachDataType attachDataType1 = new AttachDataType();
-        attachDataType1.setNamePattern("file:" + circuit.getAbsolutePath());
+        attachDataType1.setNamePattern(circuit.getName());
         attachDataType1.setTask(task);
 
         TestDatas testDatas = new TestDatas();
@@ -33,7 +33,7 @@ public class TaskSender {
         testDatas.setAttachDataType(attachDataType1);
 
         TestData testData1 = new TestData();
-        testData1.setInputData("file:" + rules.getAbsolutePath());
+        testData1.setInputData("file:" + rules.getName());
         testData1.setOutputData("true");
         testData1.setPoints(10);
         testData1.setTestDatas(testDatas);
@@ -68,7 +68,6 @@ public class TaskSender {
 
         TaskDAO dao = Dao.getFactory().createTaskDao();
         send = dao.addTaskSend(send);
-
 
         TestDataResult result = dao.getResult(send.getAttachDatas().get(0).getType().getTestDatas().iterator().next().getTestDatas().iterator().next().getId());
         return result;

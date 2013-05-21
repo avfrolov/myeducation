@@ -25,6 +25,7 @@ import java.util.List;
 
 public class FileUploadServlet extends HttpServlet {
 
+    //TODO
     private static final String UPLOAD_DIRECTORY = "/Volumes/Dev/Example/";
 
     @Override
@@ -36,8 +37,6 @@ public class FileUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
-        System.out.println("fsfs");
 
         // process only multipart requests
         if (ServletFileUpload.isMultipartContent(req)) {
@@ -63,48 +62,38 @@ public class FileUploadServlet extends HttpServlet {
                     }
 
                     int dotIndex = fileName.lastIndexOf(".");
-                    fileName = fileName.substring(0, dotIndex) + System.currentTimeMillis() + fileName.substring(dotIndex);
-
-                    File uploadedFile;
-
                     if (item.getFieldName().contains("circuit")) {
-                        File cicruitDir = new File(UPLOAD_DIRECTORY + "circuit");
-                        if (!cicruitDir.exists()) {
-                            cicruitDir.mkdirs();
-                        }
-
-                        uploadedFile = new File(UPLOAD_DIRECTORY + "circuit", fileName);
-                        circuit = uploadedFile;
+                        fileName = "circuit" + System.currentTimeMillis() + fileName.substring(dotIndex);
                     } else if (item.getFieldName().contains("rules")) {
-                        File rulesDir = new File(UPLOAD_DIRECTORY + "rules");
-                        if (!rulesDir.exists()) {
-                            rulesDir.mkdirs();
-                        }
-
-                        uploadedFile = new File(UPLOAD_DIRECTORY + "rules", fileName);
-                        rules = uploadedFile;
+                        fileName = "rules" + System.currentTimeMillis() + fileName.substring(dotIndex);
                     } else {
-                        File dir = new File(UPLOAD_DIRECTORY + "rules");
-                        if (!dir.exists()) {
-                            dir.mkdirs();
-                        }
+                        fileName = fileName.substring(0, dotIndex) + System.nanoTime() + fileName.substring(dotIndex);
+                    }
 
-                        uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
+                    File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
+
+                    if (fileName.contains("circuit")) {
+                        circuit = uploadedFile;
+                    } else if (fileName.contains("rules")) {
+                        rules = uploadedFile;
                     }
 
                     if (uploadedFile.createNewFile()) {
                         item.write(uploadedFile);
-                        resp.setStatus(HttpServletResponse.SC_CREATED);
+//                        resp.setStatus(HttpServletResponse.SC_CREATED);
                         resp.flushBuffer();
                     } else
                         throw new IOException("The file already exists in repository.");
 
                 }
                 TestDataResult result = TaskSender.sendTask(circuit, rules);
-//                resp.getWriter().write(r());
+                resp.getWriter().write(Boolean.toString(result.isSuccess()));
+                resp.flushBuffer();
             } catch (Exception e) {
                 resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         "An error occurred while creating the file : " + e.getMessage());
+                resp.getWriter().write(e.getMessage());
+                resp.flushBuffer();
             }
 
         } else {

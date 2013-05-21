@@ -52,7 +52,7 @@ public class CircuitPanel extends VLayout {
 
         Button startButton = new Button("Start");
 
-        Label resultLabel = new Label("<font color='black' size='4em' family='Geneva'>Result</font>");
+        final Label resultLabel = new Label("<font color='black' size='4em' family='Geneva'>Result </font>");
 
         panel.add(circuitLabel);
         panel.add(circuitUpload);
@@ -86,7 +86,13 @@ public class CircuitPanel extends VLayout {
         form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
             @Override
             public void onSubmitComplete(FormPanel.SubmitCompleteEvent submitCompleteEvent) {
-                Window.alert(submitCompleteEvent.getResults());
+                Boolean res =  submitCompleteEvent.getResults().contains("true");
+                    String color = res? "blue" : "red";
+                if (res) {
+                    resultLabel.setContents(resultLabel.getContents() + "<font color='" + color +"' size='4em' family='Geneva'>" + res + "</font> ");
+                } else {
+                    resultLabel.setContents(resultLabel.getContents() + "<font color='red' size='4em' family='Geneva'>" + submitCompleteEvent.getResults() + "</font> ");
+                }
             }
         });
 
