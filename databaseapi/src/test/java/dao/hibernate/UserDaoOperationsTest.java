@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myeducation.databaseapi.dao.Dao;
 import org.myeducation.databaseapi.dao.UserDAO;
-import org.myeducation.databaseapi.entities.User;
+import org.myeducation.databaseapi.entities.user.User;
 
 /**
  * Created with IntelliJ IDEA.

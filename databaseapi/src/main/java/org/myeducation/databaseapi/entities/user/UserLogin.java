@@ -1,4 +1,6 @@
-package org.myeducation.databaseapi.entities;
+package org.myeducation.databaseapi.entities.user;
+
+import org.myeducation.databaseapi.entities.task.TaskSend;
 
 import javax.persistence.*;
 import java.util.Set;

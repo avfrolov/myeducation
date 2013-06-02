@@ -1,4 +1,6 @@
-package org.myeducation.databaseapi.entities;
+package org.myeducation.databaseapi.entities.task;
+
+import org.myeducation.databaseapi.entities.user.UserLogin;
 
 import javax.persistence.*;
 import java.util.List;

@@ -2,7 +2,7 @@ package org.myeducation.databaseapi.service.local;
 
 import org.myeducation.databaseapi.dao.Dao;
 import org.myeducation.databaseapi.dao.TaskDAO;
-import org.myeducation.databaseapi.entities.*;
+import org.myeducation.databaseapi.entities.task.*;
 import org.myeducation.databaseapi.model.ExecutorData;
 import org.myeducation.databaseapi.model.ExecutorDataDto;
 import org.myeducation.databaseapi.service.ExecutorSaveService;
@@ -10,7 +10,6 @@ import org.myeducation.databaseapi.service.ExecutorSaveService;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 

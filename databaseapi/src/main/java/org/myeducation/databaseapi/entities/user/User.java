@@ -1,4 +1,4 @@
-package org.myeducation.databaseapi.entities;
+package org.myeducation.databaseapi.entities.user;
 
 import javax.persistence.*;
 

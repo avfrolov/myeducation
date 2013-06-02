@@ -1,8 +1,8 @@
 package org.myeducation.databaseapi.dao.hibernate;
 
 import org.myeducation.databaseapi.dao.UserDAO;
-import org.myeducation.databaseapi.entities.User;
-import org.myeducation.databaseapi.entities.UserLogin;
+import org.myeducation.databaseapi.entities.user.User;
+import org.myeducation.databaseapi.entities.user.UserLogin;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

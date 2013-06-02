@@ -1,7 +1,7 @@
 package org.myeducation.databaseapi.dao;
 
-import org.myeducation.databaseapi.entities.User;
-import org.myeducation.databaseapi.entities.UserLogin;
+import org.myeducation.databaseapi.entities.user.User;
+import org.myeducation.databaseapi.entities.user.UserLogin;
 
 /**
  * Created with IntelliJ IDEA.

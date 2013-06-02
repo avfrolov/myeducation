@@ -1,7 +1,7 @@
 package org.myeducation.databaseapi.model;
 
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.TestDatas;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.TestDatas;
 
 /**
  * Created with IntelliJ IDEA.

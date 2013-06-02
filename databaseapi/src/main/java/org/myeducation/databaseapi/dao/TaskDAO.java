@@ -1,12 +1,10 @@
 package org.myeducation.databaseapi.dao;
 
-import org.myeducation.databaseapi.entities.Task;
-import org.myeducation.databaseapi.entities.TaskSend;
-import org.myeducation.databaseapi.entities.TestData;
-import org.myeducation.databaseapi.entities.TestDataResult;
+import org.myeducation.databaseapi.entities.task.Task;
+import org.myeducation.databaseapi.entities.task.TaskSend;
+import org.myeducation.databaseapi.entities.task.TestDataResult;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.

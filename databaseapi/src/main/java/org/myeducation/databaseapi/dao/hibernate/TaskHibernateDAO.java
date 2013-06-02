@@ -1,16 +1,16 @@
 package org.myeducation.databaseapi.dao.hibernate;
 
 import org.myeducation.databaseapi.dao.TaskDAO;
-import org.myeducation.databaseapi.entities.*;
+import org.myeducation.databaseapi.entities.task.Task;
+import org.myeducation.databaseapi.entities.task.TaskSend;
+import org.myeducation.databaseapi.entities.task.TestDataResult;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.transaction.Transaction;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.

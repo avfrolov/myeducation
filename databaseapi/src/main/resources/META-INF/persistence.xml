@@ -4,15 +4,21 @@
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>org.myeducation.databaseapi.entities.Task</class>
-        <class>org.myeducation.databaseapi.entities.AttachDataType</class>
-        <class>org.myeducation.databaseapi.entities.TestDatas</class>
-        <class>org.myeducation.databaseapi.entities.TestData</class>
-        <class>org.myeducation.databaseapi.entities.AttachData</class>
-        <class>org.myeducation.databaseapi.entities.TaskSend</class>
-        <class>org.myeducation.databaseapi.entities.TestDataResult</class>
-        <class>org.myeducation.databaseapi.entities.User</class>
-        <class>org.myeducation.databaseapi.entities.UserLogin</class>
+        <class>org.myeducation.databaseapi.entities.task.Task</class>
+        <class>org.myeducation.databaseapi.entities.task.AttachDataType</class>
+        <class>org.myeducation.databaseapi.entities.task.TestDatas</class>
+        <class>org.myeducation.databaseapi.entities.task.TestData</class>
+        <class>org.myeducation.databaseapi.entities.task.AttachData</class>
+        <class>org.myeducation.databaseapi.entities.task.TaskSend</class>
+        <class>org.myeducation.databaseapi.entities.task.TestDataResult</class>
+        <class>org.myeducation.databaseapi.entities.user.User</class>
+        <class>org.myeducation.databaseapi.entities.user.UserLogin</class>
+        <class>org.myeducation.databaseapi.entities.course.Course</class>
+        <class>org.myeducation.databaseapi.entities.course.Week</class>
+        <class>org.myeducation.databaseapi.entities.course.Exercise</class>
+        <class>org.myeducation.databaseapi.entities.course.CourseType</class>
+
+
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
