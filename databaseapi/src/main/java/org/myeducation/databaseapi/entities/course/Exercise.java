@@ -31,5 +31,43 @@ public class Exercise {
     @Column(name = "exercise_endDate")
     private Long endDate;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Week getWeek() {
+        return week;
+    }
+
+    public void setWeek(Week week) {
+        this.week = week;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Long startDate) {
+        this.startDate = startDate;
+    }
+
+    public Long getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Long endDate) {
+        this.endDate = endDate;
+    }
 }

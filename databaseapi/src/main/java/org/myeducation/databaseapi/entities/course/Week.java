@@ -3,7 +3,6 @@ package org.myeducation.databaseapi.entities.course;
 import javax.persistence.*;
 import java.io.File;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,10 +20,36 @@ public class Week {
     @Column(name = "week_id")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "week_exercise")
-    private Exercise exercise;
+    private List<Exercise> exercises;
 
+//    @OneToMany(cascade = CascadeType.ALL)
+    @ElementCollection
+    @JoinColumn(name = "week_lecture")
+    private List<String> lectures;
 
-    private File lecture;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
+    public List<String> getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(List<String> lectures) {
+        this.lectures = lectures;
+    }
 }

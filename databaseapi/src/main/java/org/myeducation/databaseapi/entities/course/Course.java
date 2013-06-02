@@ -26,25 +26,24 @@ public class Course {
     @Column(name = "course_description")
     private String description;
 
+    @Column(name = "course_startdate")
+    private Long startDate;
+
+    @Column(name = "course_enddate")
+    private Long endDate;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_creator")
     private User creator;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<User> followers;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<User> followers;
 
     @Column(name = "course_type")
     private CourseType courseType;
 
-    @OneToMany(mappedBy = "exercise", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "exercises", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Week> weeks;
-
-
-//    @OneToMany(mappedBy = "exercises", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private Set<Exercise> exercises;
-//
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    private List<File> lectures;
 
 
     public Long getId() {
@@ -63,6 +62,22 @@ public class Course {
         this.description = description;
     }
 
+    public Long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Long startDate) {
+        this.startDate = startDate;
+    }
+
+    public Long getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Long endDate) {
+        this.endDate = endDate;
+    }
+
     public User getCreator() {
         return creator;
     }
@@ -71,11 +86,11 @@ public class Course {
         this.creator = creator;
     }
 
-    public Set<User> getFollowers() {
+    public List<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(Set<User> followers) {
+    public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
 
