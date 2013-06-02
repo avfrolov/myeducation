@@ -1,7 +1,7 @@
 package org.myeducation.taskexecuter.core;
 
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.TestDatas;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.TestDatas;
 import org.myeducation.databaseapi.model.ExecutorData;
 import org.myeducation.databaseapi.model.ExecutorDataDto;
 import org.myeducation.databaseapi.service.Service;

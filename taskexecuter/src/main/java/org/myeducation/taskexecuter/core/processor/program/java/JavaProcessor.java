@@ -1,9 +1,9 @@
 package org.myeducation.taskexecuter.core.processor.program.java;
 
 import com.google.common.io.Closeables;
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.ProcessorResult;
-import org.myeducation.databaseapi.entities.TestData;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.ProcessorResult;
+import org.myeducation.databaseapi.entities.task.TestData;
 import org.myeducation.properties.PropertiesFactory;
 import org.myeducation.taskexecuter.core.processor.program.ProgramProcessor;
 import org.myeducation.taskexecuter.core.processor.program.ProgramResult;
@@ -12,7 +12,6 @@ import org.myeducation.taskexecuter.core.util.DataSourceUtil;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;

@@ -5,7 +5,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
-import org.myeducation.databaseapi.entities.TestDataResult;
+import org.myeducation.databaseapi.entities.task.TestDataResult;
 import org.myeducation.properties.PropertiesFactory;
 
 import javax.servlet.ServletException;

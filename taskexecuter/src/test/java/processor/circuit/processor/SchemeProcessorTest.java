@@ -1,8 +1,8 @@
 package processor.circuit.processor;
 
 import org.junit.Test;
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.TaskSend;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.TaskSend;
 import org.myeducation.taskexecuter.core.Executor;
 import processor.circuit.helper.EntityHelper;
 

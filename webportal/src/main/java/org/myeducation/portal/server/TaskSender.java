@@ -2,7 +2,7 @@ package org.myeducation.portal.server;
 
 import org.myeducation.databaseapi.dao.Dao;
 import org.myeducation.databaseapi.dao.TaskDAO;
-import org.myeducation.databaseapi.entities.*;
+import org.myeducation.databaseapi.entities.task.*;
 
 import java.io.File;
 import java.util.ArrayList;

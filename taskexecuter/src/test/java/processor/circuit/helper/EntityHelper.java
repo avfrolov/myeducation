@@ -1,6 +1,6 @@
 package processor.circuit.helper;
 
-import org.myeducation.databaseapi.entities.*;
+import org.myeducation.databaseapi.entities.task.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;

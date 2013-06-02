@@ -1,11 +1,11 @@
 package org.myeducation.taskexecuter.core.processor;
 
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.TestData;
-import org.myeducation.databaseapi.entities.TestDatas;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.TestData;
+import org.myeducation.databaseapi.entities.task.TestDatas;
 import org.myeducation.databaseapi.service.*;
 import org.myeducation.properties.PropertiesFactory;
-import org.myeducation.databaseapi.entities.ProcessorResult;
+import org.myeducation.databaseapi.entities.task.ProcessorResult;
 
 import java.io.Serializable;
 import java.util.Properties;

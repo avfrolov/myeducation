@@ -1,11 +1,9 @@
 package org.myeducation.taskexecuter.core.processor.program;
 
-import org.myeducation.databaseapi.entities.AttachData;
-import org.myeducation.databaseapi.entities.ProcessorResult;
-import org.myeducation.databaseapi.entities.TestData;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.ProcessorResult;
+import org.myeducation.databaseapi.entities.task.TestData;
 import org.myeducation.taskexecuter.core.processor.AbstractProcessor;
-
-import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.

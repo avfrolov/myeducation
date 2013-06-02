@@ -9,7 +9,7 @@ import org.myeducation.taskexecuter.core.processor.circuit.jaxb.rules.Rules;
  * Time: 15:05
  * To change this template use File | Settings | File Templates.
  */
-public interface RuleValidator {
+public interface RuleValidator extends AbstractValidator{
 
     boolean validate(Rules rules);
 

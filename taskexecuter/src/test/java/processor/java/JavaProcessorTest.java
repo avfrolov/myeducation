@@ -3,7 +3,8 @@ package processor.java;
 import org.junit.Test;
 import org.myeducation.databaseapi.dao.Dao;
 import org.myeducation.databaseapi.dao.TaskDAO;
-import org.myeducation.databaseapi.entities.*;
+import org.myeducation.databaseapi.entities.task.AttachData;
+import org.myeducation.databaseapi.entities.task.TaskSend;
 import org.myeducation.taskexecuter.core.Executor;
 
 /**
