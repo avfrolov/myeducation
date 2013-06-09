@@ -1,6 +1,7 @@
 package org.myeducation.databaseapi.entities.course;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "exercise")
-public class Exercise {
+public class Exercise implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,11 @@ public class Exercise {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "week_exercise")
+    @JoinColumn(name = "week_id")
     private Week week;
+
+    @Column(name = "exercise_name")
+    private String name;
 
     @Column(name = "exercise_description")
     private String description;
@@ -69,5 +73,13 @@ public class Exercise {
 
     public void setEndDate(Long endDate) {
         this.endDate = endDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

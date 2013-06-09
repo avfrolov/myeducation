@@ -10,7 +10,6 @@ package org.myeducation.databaseapi.entities.course;
 public enum CourseType {
 
     PUBLIC,
-    PROTECTED,
     PRIVATE;
 
     public String value() {

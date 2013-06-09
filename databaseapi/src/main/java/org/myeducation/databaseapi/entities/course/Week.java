@@ -1,7 +1,7 @@
 package org.myeducation.databaseapi.entities.course;
 
 import javax.persistence.*;
-import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,21 +13,18 @@ import java.util.List;
  */
 @Entity
 @Table(name = "week")
-public class Week {
+public class Week implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "week_id")
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "week_exercise")
+    @OneToMany(mappedBy = "week", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Exercise> exercises;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-    @ElementCollection
-    @JoinColumn(name = "week_lecture")
-    private List<String> lectures;
+    @OneToMany(mappedBy = "week", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Lecture> lectures;
 
     public Long getId() {
         return id;
@@ -45,11 +42,11 @@ public class Week {
         this.exercises = exercises;
     }
 
-    public List<String> getLectures() {
+    public List<Lecture> getLectures() {
         return lectures;
     }
 
-    public void setLectures(List<String> lectures) {
+    public void setLectures(List<Lecture> lectures) {
         this.lectures = lectures;
     }
 }

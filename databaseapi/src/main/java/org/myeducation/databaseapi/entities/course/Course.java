@@ -3,9 +3,8 @@ package org.myeducation.databaseapi.entities.course;
 import org.myeducation.databaseapi.entities.user.User;
 
 import javax.persistence.*;
-import java.io.File;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,12 +15,15 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "course")
-public class Course {
+public class Course implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
     private Long id;
+
+    @Column(name = "course_name")
+    private String name;
 
     @Column(name = "course_description")
     private String description;
@@ -36,13 +38,15 @@ public class Course {
     @JoinColumn(name = "course_creator")
     private User creator;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<User> followers;
 
     @Column(name = "course_type")
     private CourseType courseType;
 
-    @OneToMany(mappedBy = "exercises", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Week> weeks;
 
 
@@ -52,6 +56,14 @@ public class Course {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

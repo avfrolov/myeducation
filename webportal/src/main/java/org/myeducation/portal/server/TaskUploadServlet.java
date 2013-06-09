@@ -24,9 +24,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-public class FileUploadServlet extends HttpServlet {
+public class TaskUploadServlet extends HttpServlet {
 
-    //TODO
     private static final String UPLOAD_DIRECTORY = PropertiesFactory.getProperties("filesystem").getProperty("filepath");
 
     @Override

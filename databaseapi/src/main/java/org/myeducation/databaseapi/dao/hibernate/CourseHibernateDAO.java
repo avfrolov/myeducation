@@ -3,6 +3,7 @@ package org.myeducation.databaseapi.dao.hibernate;
 import org.myeducation.databaseapi.dao.CourseDAO;
 import org.myeducation.databaseapi.entities.course.Course;
 import org.myeducation.databaseapi.entities.course.Exercise;
+import org.myeducation.databaseapi.entities.course.Lecture;
 import org.myeducation.databaseapi.entities.course.Week;
 
 import javax.persistence.EntityManager;
@@ -38,10 +39,10 @@ public class CourseHibernateDAO implements CourseDAO {
         mergeObject(course);
     }
 
-    public void addWeek(Course course, Exercise exercise, String lecture) {
+    public void addWeek(Course course, Exercise exercise, Lecture lecture) {
         Week week = new Week();
         week.setExercises(new ArrayList<Exercise>());
-        week.setLectures(new ArrayList<String>());
+        week.setLectures(new ArrayList<Lecture>());
         if (course.getWeeks() == null) {
             course.setWeeks(new ArrayList<Week>());
         }
@@ -60,9 +61,9 @@ public class CourseHibernateDAO implements CourseDAO {
         mergeObject(week);
     }
 
-    public void addLectureToWeek(Week week, String lecture) {
+    public void addLectureToWeek(Week week, Lecture lecture) {
         if (week.getLectures() == null) {
-            week.setLectures(new ArrayList<String>());
+            week.setLectures(new ArrayList<Lecture>());
         }
         week.getLectures().add(lecture);
         mergeObject(week);

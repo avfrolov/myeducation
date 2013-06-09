@@ -17,12 +17,13 @@
         <class>org.myeducation.databaseapi.entities.course.Week</class>
         <class>org.myeducation.databaseapi.entities.course.Exercise</class>
         <class>org.myeducation.databaseapi.entities.course.CourseType</class>
+        <class>org.myeducation.databaseapi.entities.course.Lecture</class>
 
 
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/myeducationdb"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/myeducationdb?characterEncoding=Cp1251"/>
             <property name="javax.persistence.jdbc.user" value="batman" />
             <property name="javax.persistence.jdbc.password" value="lovebatman" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

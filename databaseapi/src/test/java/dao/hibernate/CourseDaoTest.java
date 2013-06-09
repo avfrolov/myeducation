@@ -4,14 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myeducation.databaseapi.dao.CourseDAO;
 import org.myeducation.databaseapi.dao.Dao;
-import org.myeducation.databaseapi.entities.course.Course;
-import org.myeducation.databaseapi.entities.course.CourseType;
-import org.myeducation.databaseapi.entities.course.Exercise;
-import org.myeducation.databaseapi.entities.course.Week;
+import org.myeducation.databaseapi.entities.course.*;
 import org.myeducation.databaseapi.entities.user.User;
 import org.myeducation.databaseapi.entities.user.UserLogin;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +19,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class CourseDaoTest {
-
 
     private CourseDAO dao;
 
@@ -54,14 +49,23 @@ public class CourseDaoTest {
 
         List<Week> weeks = new ArrayList<Week>();
         Week week = new Week();
-        String lecture = "/Volumes/Learning/Eltech/4-kurs.xls";
+        Lecture lecture = new Lecture();
+        lecture.setName("Lecture 1");
+        lecture.setFile("file:/Volumes/Learning/Eltech/4-kurs.xls");
+        lecture.setWeek(week);
+        Lecture lecture2 = new Lecture();
+        lecture2.setName("Lecture 2");
+        lecture2.setFile("file:/Volumes/Learning/router.rtf");
+        lecture2.setWeek(week);
         Exercise exercise = new Exercise();
+        exercise.setName("test exercise");
         exercise.setDescription("1 exercise");
         exercise.setEndDate(System.currentTimeMillis() + 10000);
         exercise.setStartDate(System.currentTimeMillis());
         exercise.setWeek(week);
-        List<String> lectures = new ArrayList<String>();
+        List<Lecture> lectures = new ArrayList<Lecture>();
         lectures.add(lecture);
+        lectures.add(lecture2);
         List<Exercise> exercises = new ArrayList<Exercise>();
         exercises.add(exercise);
         week.setLectures(lectures);
@@ -72,8 +76,9 @@ public class CourseDaoTest {
         course.setCourseType(CourseType.PUBLIC);
         course.setCreator(creator);
         course.setDescription("this is test of simple course");
+        course.setName("Test name");
         course.setStartDate(System.currentTimeMillis());
-        course.setEndDate(System.currentTimeMillis() + 5000);
+        course.setEndDate(System.currentTimeMillis() + 5000000);
         course.setFollowers(followers);
         course.setWeeks(weeks);
 
@@ -83,7 +88,7 @@ public class CourseDaoTest {
 
     @Test
     public void testGet() throws Exception {
-        Course course = dao.getCourse(4L);
+        Course course = dao.getCourse(1L);
         course.getWeeks();
     }
 
