@@ -85,6 +85,11 @@ public class CourseHibernateDAO implements CourseDAO {
         return course;
     }
 
+    public Exercise getExerciseById(long id) {
+        Exercise exercise = (Exercise) manager.createQuery("select e from Exercise as e where e.id = :id").setParameter("id", id).getSingleResult();
+        return exercise;
+    }
+
     protected void storeObject(Object o) {
         EntityTransaction transaction = manager.getTransaction();
         transaction.begin();

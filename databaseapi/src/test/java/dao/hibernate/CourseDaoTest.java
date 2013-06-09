@@ -33,8 +33,8 @@ public class CourseDaoTest {
         creator.setAddress("address");
         creator.setCreateDate(System.currentTimeMillis());
         creator.setEmail("test@gmail.com");
-        creator.setFirstName("Vasya");
-        creator.setLastName("Pupkin");
+        creator.setFirstName("Андрей");
+        creator.setLastName("Фролов");
         creator.setPhoneNumber("8473749358");
 
         UserLogin login = new UserLogin();
@@ -50,24 +50,37 @@ public class CourseDaoTest {
         List<Week> weeks = new ArrayList<Week>();
         Week week = new Week();
         Lecture lecture = new Lecture();
-        lecture.setName("Lecture 1");
-        lecture.setFile("file:/Volumes/Learning/Eltech/4-kurs.xls");
+        lecture.setName("Лекция 1. Основы");
+        lecture.setFile("/Volumes/Learning/Eltech/4-kurs.xls");
         lecture.setWeek(week);
         Lecture lecture2 = new Lecture();
-        lecture2.setName("Lecture 2");
-        lecture2.setFile("file:/Volumes/Learning/router.rtf");
+        lecture2.setName("Лекция 2. Основные приемы");
+        lecture2.setFile("/Volumes/Learning/router.rtf");
         lecture2.setWeek(week);
+
         Exercise exercise = new Exercise();
-        exercise.setName("test exercise");
-        exercise.setDescription("1 exercise");
-        exercise.setEndDate(System.currentTimeMillis() + 10000);
+        exercise.setName("Упражнение 1");
+        exercise.setDescription("Составить схему, содержащую 3 резистора и конденсатор с емкостью = 1 мкФ. Схема должна быть замкнута");
+        exercise.setEndDate(System.currentTimeMillis() + 500000000);
         exercise.setStartDate(System.currentTimeMillis());
+        exercise.setValidationFile("/Users/andrey/Documents/workspace/myeducation/taskexecuter/files/rules/correct3.xml");
+        exercise.setResult(ExerciseResult.NOT_FINISHED);
         exercise.setWeek(week);
+
+        Exercise exercise2 = new Exercise();
+        exercise2.setName("Упражнение 2");
+        exercise2.setDescription("Составить схему, содержащую резистор с емкостью = 10 Ом. Схема должна быть замкнута");
+        exercise2.setEndDate(System.currentTimeMillis() + 500000000);
+        exercise2.setStartDate(System.currentTimeMillis());
+        exercise2.setValidationFile("/Users/andrey/Documents/workspace/myeducation/taskexecuter/files/rules/correct4.xml");
+        exercise2.setResult(ExerciseResult.NOT_FINISHED);
+        exercise2.setWeek(week);
         List<Lecture> lectures = new ArrayList<Lecture>();
         lectures.add(lecture);
         lectures.add(lecture2);
         List<Exercise> exercises = new ArrayList<Exercise>();
         exercises.add(exercise);
+        exercises.add(exercise2);
         week.setLectures(lectures);
         week.setExercises(exercises);
         weeks.add(week);
@@ -75,10 +88,10 @@ public class CourseDaoTest {
         Course course = new Course();
         course.setCourseType(CourseType.PUBLIC);
         course.setCreator(creator);
-        course.setDescription("this is test of simple course");
-        course.setName("Test name");
+        course.setDescription("Учебный курс предназначен для специалистов информационно-проектирующих систем.");
+        course.setName("Основы проектирования");
         course.setStartDate(System.currentTimeMillis());
-        course.setEndDate(System.currentTimeMillis() + 5000000);
+        course.setEndDate(System.currentTimeMillis() + 5000000000L);
         course.setFollowers(followers);
         course.setWeeks(weeks);
 

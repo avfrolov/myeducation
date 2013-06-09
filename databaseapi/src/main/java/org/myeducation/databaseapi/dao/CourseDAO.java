@@ -26,4 +26,6 @@ public interface CourseDAO {
     List<Course> getCourses();
     List<Course> getCourses(Long startDate, Long endDate);
     Course getCourse(Long id);
+
+    Exercise getExerciseById(long id);
 }

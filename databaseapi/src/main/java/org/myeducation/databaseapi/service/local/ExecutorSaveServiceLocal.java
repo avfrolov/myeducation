@@ -41,7 +41,7 @@ public class ExecutorSaveServiceLocal implements ExecutorSaveService {
 
         testDataResult.setSuccess(result.isSuccess());
         testDataResult.setAttachData(attachData);
-        testDataResult.setResult(resultData);
+//        testDataResult.setResult(resultData);
         testDataResult.setTestData(testData);
 
         dao.addTestResult(testDataResult);

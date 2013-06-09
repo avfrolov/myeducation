@@ -26,6 +26,12 @@ public class Exercise implements Serializable{
     @Column(name = "exercise_name")
     private String name;
 
+    @Column(name = "exercise_validation")
+    private String validationFile;
+
+    @Column(name = "exercise_success")
+    private ExerciseResult result;
+
     @Column(name = "exercise_description")
     private String description;
 
@@ -81,5 +87,21 @@ public class Exercise implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getValidationFile() {
+        return validationFile;
+    }
+
+    public void setValidationFile(String validationFile) {
+        this.validationFile = validationFile;
+    }
+
+    public ExerciseResult getResult() {
+        return result;
+    }
+
+    public void setResult(ExerciseResult result) {
+        this.result = result;
     }
 }
