@@ -92,9 +92,11 @@ public class GWT2ObjectMapper {
         for (ExerciseGWT e : exerciseGWTs) {
             Exercise eg = new Exercise();
             eg.setId(e.getId());
+            eg.setName(e.getName());
             eg.setDescription(e.getDescription());
             eg.setEndDate(e.getEndDate());
             eg.setStartDate(e.getStartDate());
+            eg.setResult(ExerciseResult.valueOf(e.getResult().value()));
             exercises.add(eg);
         }
         return exercises;

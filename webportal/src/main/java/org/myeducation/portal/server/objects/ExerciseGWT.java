@@ -15,6 +15,7 @@ public class ExerciseGWT implements Serializable {
     private WeekGWT week;
     private String name;
     private String description;
+    private ExerciseResultGWT result;
     private Long startDate;
     private Long endDate;
 
@@ -64,5 +65,13 @@ public class ExerciseGWT implements Serializable {
 
     public void setEndDate(Long endDate) {
         this.endDate = endDate;
+    }
+
+    public ExerciseResultGWT getResult() {
+        return result;
+    }
+
+    public void setResult(ExerciseResultGWT result) {
+        this.result = result;
     }
 }

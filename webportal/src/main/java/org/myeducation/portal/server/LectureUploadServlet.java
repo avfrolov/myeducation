@@ -64,7 +64,6 @@ public class LectureUploadServlet extends HttpServlet {
 
                     if (uploadedFile.createNewFile()) {
                         item.write(uploadedFile);
-                        item.setFieldName(uploadedFile.getAbsolutePath());
                     } else
                         throw new IOException("The file already exists in repository.");
 

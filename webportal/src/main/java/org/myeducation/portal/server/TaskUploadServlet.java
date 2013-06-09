@@ -5,6 +5,8 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.myeducation.databaseapi.dao.Dao;
+import org.myeducation.databaseapi.entities.course.Exercise;
 import org.myeducation.databaseapi.entities.task.TestDataResult;
 import org.myeducation.properties.PropertiesFactory;
 
@@ -55,6 +57,7 @@ public class TaskUploadServlet extends HttpServlet {
                     // process only file upload - discard other form item types
                     if (item.isFormField()) continue;
 
+
                     String fileName = item.getName();
                     // get only the file name not whole path
                     if (fileName != null) {
@@ -62,21 +65,15 @@ public class TaskUploadServlet extends HttpServlet {
                     }
 
                     int dotIndex = fileName.lastIndexOf(".");
-                    if (item.getFieldName().contains("circuit")) {
-                        fileName = "circuit" + System.currentTimeMillis() + fileName.substring(dotIndex);
-                    } else if (item.getFieldName().contains("rules")) {
-                        fileName = "rules" + System.currentTimeMillis() + fileName.substring(dotIndex);
-                    } else {
-                        fileName = fileName.substring(0, dotIndex) + System.nanoTime() + fileName.substring(dotIndex);
-                    }
+                    fileName = fileName.substring(0, dotIndex) + System.nanoTime() + fileName.substring(dotIndex);
 
                     File uploadedFile = new File(UPLOAD_DIRECTORY + File.separator, fileName);
+                    circuit = uploadedFile;
 
-                    if (fileName.contains("circuit")) {
-                        circuit = uploadedFile;
-                    } else if (fileName.contains("rules")) {
-                        rules = uploadedFile;
-                    }
+                    long id = Long.valueOf(req.getParameter("id"));
+                    Exercise exercise = Dao.getFactory().createCourseDao().getExerciseById(id);
+
+                    rules = new File(exercise.getValidationFile());
 
                     if (uploadedFile.createNewFile()) {
                         item.write(uploadedFile);
@@ -85,7 +82,7 @@ public class TaskUploadServlet extends HttpServlet {
 
                 }
                 TestDataResult result = TaskSender.sendTask(circuit, rules);
-                resp.getWriter().write(result.isSuccess() ? "Circuit valid" : "Circuit not valid");
+                resp.getWriter().write(String.valueOf(result.isSuccess()));
                 resp.flushBuffer();
             } catch (Exception e) {
                 resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,

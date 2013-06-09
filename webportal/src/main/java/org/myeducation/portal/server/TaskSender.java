@@ -33,7 +33,8 @@ public class TaskSender {
         testDatas.setAttachDataType(attachDataType1);
 
         TestData testData1 = new TestData();
-        testData1.setInputData("file:" + rules.getName());
+//        testData1.setInputData("file:" + rules.getName());
+        testData1.setInputData("file:" + rules.getAbsolutePath());
         testData1.setOutputData("true");
         testData1.setPoints(10);
         testData1.setTestDatas(testDatas);

@@ -95,9 +95,11 @@ public class Object2GWTMapper {
         for (Exercise e : exercises) {
             ExerciseGWT eg = new ExerciseGWT();
             eg.setId(e.getId());
+            eg.setName(e.getName());
             eg.setDescription(e.getDescription());
             eg.setEndDate(e.getEndDate());
             eg.setStartDate(e.getStartDate());
+            eg.setResult(ExerciseResultGWT.valueOf(e.getResult().value()));
             exerciseGWTs.add(eg);
         }
         return exerciseGWTs;

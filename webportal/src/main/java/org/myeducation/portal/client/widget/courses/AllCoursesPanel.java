@@ -8,31 +8,34 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.FormPanel;
 import com.smartgwt.client.types.Encoding;
 import com.smartgwt.client.types.FormMethod;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.SubmitValuesEvent;
 import com.smartgwt.client.widgets.form.events.SubmitValuesHandler;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.ButtonItem;
+import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
+import com.smartgwt.client.widgets.form.fields.StaticTextItem;
+import com.smartgwt.client.widgets.form.fields.UploadItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import org.myeducation.portal.client.CourseHelper;
 import org.myeducation.portal.client.CourseHelperAsync;
-import org.myeducation.portal.server.objects.CourseGWT;
-import org.myeducation.portal.server.objects.LectureGWT;
-import org.myeducation.portal.server.objects.WeekGWT;
+import org.myeducation.portal.server.objects.*;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AllCoursesPanel extends VLayout {
 
     CourseHelperAsync courseHelper = CourseHelper.App.getInstance();
+    private static final String UPLOAD_ACTION_URL = GWT.getModuleBaseURL() + "upload";
+    private long id;
 
     public AllCoursesPanel() {
         init();
@@ -47,7 +50,6 @@ public class AllCoursesPanel extends VLayout {
         TextColumn<CourseGWT> nameColumn = new TextColumn<CourseGWT>() {
             @Override
             public String getValue(CourseGWT course) {
-                System.out.println(course.getName());
                 return course.getName();
             }
         };
@@ -62,7 +64,9 @@ public class AllCoursesPanel extends VLayout {
         TextColumn<CourseGWT> privacyColumn = new TextColumn<CourseGWT>() {
             @Override
             public String getValue(CourseGWT course) {
-                return course.getCourseType().name();
+                String privacy = course.getCourseType().equals(CourseTypeGWT.PUBLIC) ?
+                        "Общедоступный" : "Частный";
+                return privacy;
             }
         };
 
@@ -107,7 +111,7 @@ public class AllCoursesPanel extends VLayout {
             public void update(int index, final CourseGWT object, String value) {
                 final com.smartgwt.client.widgets.Window winModal = new com.smartgwt.client.widgets.Window();
                 winModal.setWidth(460);
-                winModal.setHeight(215);
+                winModal.setHeight(265);
                 winModal.setTitle("О курсе");
                 winModal.setShowMinimizeButton(false);
                 winModal.setIsModal(true);
@@ -119,6 +123,10 @@ public class AllCoursesPanel extends VLayout {
                 form.setWidth100();
                 form.setPadding(5);
                 form.setLayoutAlign(VerticalAlignment.BOTTOM);
+                form.setMethod(FormMethod.POST);
+                form.setEncoding(Encoding.MULTIPART);
+                form.setAction(UPLOAD_ACTION_URL + "?id=");
+                form.setCanSubmit(true);
 
                 final ComboBoxItem selectItem = new ComboBoxItem("Лекция");
                 final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
@@ -132,6 +140,48 @@ public class AllCoursesPanel extends VLayout {
                 selectItem.setValueMap(valueMap);
 
                 ButtonItem dlButton = new ButtonItem("Скачать");
+                final StaticTextItem nameExerciseItem = new StaticTextItem("Упражнение");
+                final StaticTextItem descExerciseItem = new StaticTextItem("Описание");
+                final StaticTextItem resExerciseItem = new StaticTextItem("Статус");
+                UploadItem sendTask = new UploadItem("Ответ");
+                ButtonItem sendButton = new ButtonItem("Отправить");
+
+                form.setFields(selectItem, dlButton, nameExerciseItem, descExerciseItem, sendTask, resExerciseItem, sendButton);
+                winModal.addItem(form);
+                winModal.show();
+
+                selectItem.addChangedHandler(new ChangedHandler() {
+                    @Override
+                    public void onChanged(ChangedEvent changedEvent) {
+                        String selected = ((ComboBoxItem) changedEvent.getSource()).getDisplayValue();
+                        ExerciseGWT exercise = null;
+                        for (WeekGWT w : object.getWeeks()) {
+                            for (int i = 0; i < w.getLectures().size(); i++) {
+                                if (w.getLectures().get(i).getName().equals(selected)) {
+                                    exercise = w.getExercises().get(i);
+                                    id = exercise.getId();
+                                    break;
+                                }
+                            }
+                        }
+
+                        nameExerciseItem.setValue(exercise.getName());
+                        descExerciseItem.setValue(exercise.getDescription());
+                        String res = "";
+                        switch (exercise.getResult()) {
+                            case NOT_FINISHED:
+                                res = "Упражнение не сдавалось";
+                                break;
+                            case SUCCESS:
+                                res = "Упражнение сдано";
+                                break;
+                            case NOT_SUCCESS:
+                                res = "Упражнение не сдано. Проверьте схему";
+                                break;
+                        }
+                        resExerciseItem.setValue(res);
+                    }
+                });
 
                 dlButton.addClickHandler(new ClickHandler() {
                     @Override
@@ -146,85 +196,18 @@ public class AllCoursesPanel extends VLayout {
                                 }
                             }
                         }
-//                        FormPanel panel = new FormPanel();
-//                        panel.setAction(GWT.getModuleBaseURL() + "download?path=" + path);
-//                        panel.setEncoding(FormPanel.METHOD_GET);
-//                        panel.setMethod(FormPanel.METHOD_GET);
-//
-//                        panel.submit();
-//
-//                        panel.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
-//                            @Override
-//                            public void onSubmitComplete(FormPanel.SubmitCompleteEvent submitCompleteEvent) {
-//                                Window.alert(submitCompleteEvent.getResults());
-//                            }
-//                        });
 
                         Window.open(GWT.getModuleBaseURL() + "download?path=" + path, "", "");
                     }
                 });
 
-                form.setFields(selectItem, dlButton);
-
-//                form.setMethod(FormMethod.POST);
-//                form.setEncoding(Encoding.MULTIPART);
-//                form.setAction(UPLOAD_ACTION_URL);
-//                form.setCanSubmit(true);
-
-//                UploadItem uploadItem = new UploadItem("Лекция");
-//                FileItem uploadItem = new FileItem("Лекция");
-//                TextAreaItem descItem = new TextAreaItem("Описание");
-//                descItem.setWidth(300);
-//                descItem.setHeight(50);
-//
-//                DateItem sdItem = new DateItem();
-//                sdItem.setTitle("Начальный срок сдачи");
-//                sdItem.setDateFormatter(dateDisplayFormat);
-//                sdItem.setUseTextField(true);
-//
-//                DateItem edItem = new DateItem();
-//                edItem.setTitle("Конечный срок сдачи");
-//                edItem.setDateFormatter(dateDisplayFormat);
-//                edItem.setUseTextField(true);
-//
-//                ButtonItem buttonItem = new ButtonItem("Ок");
-//
-//                SubmitItem submitItem = new SubmitItem("OK");
-//
-//                form.setFields(uploadItem, descItem, sdItem, edItem, buttonItem);
-//                form.setFields(uploadItem, descItem, sdItem, edItem, submitItem);
-                winModal.addItem(form);
-                winModal.show();
-
-
-//                buttonItem.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
-//                    @Override
-//                    public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent clickEvent) {
-//                        form.submitForm();
-//                    }
-//                });
-
-//                submitItem.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
-//                    @Override
-//                    public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent clickEvent) {
-//                        form.submit();
-//
-//                        form.addSubmitValuesHandler(new SubmitValuesHandler() {
-//                            @Override
-//                            public void onSubmitValues(SubmitValuesEvent submitValuesEvent) {
-//                                Window.alert("fsfsk");
-//                            }
-//                        });
-//                    }
-//                });
-
-//                form.addSubmitValuesHandler(new SubmitValuesHandler() {
-//                    @Override
-//                    public void onSubmitValues(SubmitValuesEvent submitValuesEvent) {
-//                        Window.alert(submitValuesEvent.getSource().toString());
-//                        System.out.println(submitValuesEvent.getSource().toString());
-//                    }
-//                });
+                sendButton.addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent clickEvent) {
+                        form.setAction(form.getAction() + String.valueOf(id));
+                        form.submit();
+                    }
+                });
             }
         });
 

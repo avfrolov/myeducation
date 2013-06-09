@@ -121,8 +121,7 @@ public class AddCoursePanel extends VLayout {
                 form.setAction(UPLOAD_ACTION_URL);
                 form.setCanSubmit(true);
 
-//                UploadItem uploadItem = new UploadItem("Лекция");
-                FileItem uploadItem = new FileItem("Лекция");
+                UploadItem uploadItem = new UploadItem("Лекция");
                 TextAreaItem descItem = new TextAreaItem("Описание");
                 descItem.setWidth(300);
                 descItem.setHeight(50);
@@ -139,7 +138,7 @@ public class AddCoursePanel extends VLayout {
 
 //                ButtonItem buttonItem = new ButtonItem("Ок");
 
-                SubmitItem submitItem = new SubmitItem("OK");
+                ButtonItem submitItem = new ButtonItem("OK");
 
 //                form.setFields(uploadItem, descItem, sdItem, edItem, buttonItem);
                 form.setFields(uploadItem, descItem, sdItem, edItem, submitItem);

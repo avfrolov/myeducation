@@ -3,6 +3,7 @@ package org.myeducation.portal.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 import org.myeducation.portal.client.widget.MainPanel;
+import org.myeducation.portal.client.widget.courses.AddCoursePanel;
 import org.myeducation.portal.client.widget.courses.AllCoursesPanel;
 
 /**
