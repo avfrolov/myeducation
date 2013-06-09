@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rules xmlns="http://rules.jaxb.circuit.processor.core.taskexecuter.myeducation.org/">
+    <rule type="EXIST">
+        <subtype>COUNT</subtype>
+        <data>
+            <element>RESISTOR</element>
+            <value>3</value>
+        </data>
+    </rule>
+    <rule type="EXIST">
+        <subtype>VALUE</subtype>
+        <data>
+            <element>CAPACITOR</element>
+            <value>0.000001</value>
+        </data>
+    </rule>
+    <rule type="ENABLED"/>
+</rules>

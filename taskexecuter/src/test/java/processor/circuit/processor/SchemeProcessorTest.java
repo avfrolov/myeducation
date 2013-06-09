@@ -19,7 +19,7 @@ public class SchemeProcessorTest {
 
     @Test
     public void testScheme() throws Exception {
-        TaskSend send = EntityHelper.createTaskSend("taskexecuter/files/circuit/correct1.xml", "taskexecuter/files/rules/correct1.xml");
+        TaskSend send = EntityHelper.createTaskSend("correct31370786518494123000.xml", "/Users/andrey/Documents/workspace/myeducation/taskexecuter/files/rules/correct3.xml");
         AttachData attachData = send.getAttachDatas().iterator().next();
         executor.processData(attachData, attachData.getType().getTestDatas().iterator().next());
         executor.shutDown();

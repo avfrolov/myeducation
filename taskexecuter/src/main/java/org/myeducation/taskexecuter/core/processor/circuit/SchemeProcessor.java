@@ -32,7 +32,8 @@ public class SchemeProcessor extends AbstractProcessor<Boolean> {
         ProcessorResult<Boolean> processorResult = new ProcessorResult<Boolean>();
 
         File circuitFile = (File) DataSourceUtil.getSource(data.getContent());
-        File rulesFile = (File) DataSourceUtil.getSource(testData.getInputData());
+//        File rulesFile = (File) DataSourceUtil.getSource(testData.getInputData());
+        File rulesFile = new File(testData.getInputData().substring(5));
 
         // JAXB Validation with unmarshalling
         Circuit circuit = Transformator.file2Circuit(circuitFile);

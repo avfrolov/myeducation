@@ -140,31 +140,34 @@ public class ExistValidator implements UserValidator {
             return false;
         }
 
+        int count = 0;
         for (Node node : nodes) {
+            System.out.println("lol");
             switch (data.getElement()) {
                 case CAPACITOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getCapacitor().size()) return true;
+                    count += node.getElements().getCapacitor().size();
                     break;
                 case DIODE:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getDiode().size()) return true;
+                    count += node.getElements().getDiode().size();
                     break;
                 case INDUCTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getInductor().size()) return true;
+                    count += node.getElements().getInductor().size();
                     break;
                 case RESISTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getResistor().size()) return true;
+                    count += node.getElements().getResistor().size();
                     break;
                 case SWITCH:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getSwitch().size()) return true;
+                    count += node.getElements().getSwitch().size();
                     break;
                 case TRANSISTOR:
-                    if (Integer.valueOf(data.getValue()) == node.getElements().getTransistor().size()) return true;
+                    count += node.getElements().getTransistor().size();
                     break;
                 default:
                     throw new IllegalArgumentException("ElementType = " + data.getElement() + "not supported");
             }
         }
-        return false;
+
+        return Integer.valueOf(data.getValue()) == count;
     }
 
     private boolean checkCollectionByName(List<? extends Element> elements, String name) {
