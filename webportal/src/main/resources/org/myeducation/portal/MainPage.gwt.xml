@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='Main'>
 
-  <inherits name='com.google.gwt.user.User' />
-  <inherits name='com.google.gwt.user.theme.standard.Standard' />
-  <inherits name="com.smartgwt.SmartGwt"/>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="com.smartgwt.SmartGwt"/>
 
-  <entry-point class='org.myeducation.portal.client.MainPage' />
+    <entry-point class='org.myeducation.portal.client.MainPage'/>
 
-  <source path='client' />
-  <source path='shared' />
+    <source path='client'/>
+    <source path='shared'/>
+    <source path='server'/>
 
+    <servlet path="/CourseHelper" class="org.myeducation.portal.server.CourseHelperImpl"/>
 </module>

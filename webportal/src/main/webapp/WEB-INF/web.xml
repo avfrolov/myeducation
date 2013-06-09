@@ -7,12 +7,44 @@
 
     <servlet>
         <servlet-name>uploadServlet</servlet-name>
-        <servlet-class>org.myeducation.portal.server.FileUploadServlet</servlet-class>
+        <servlet-class>org.myeducation.portal.server.TaskUploadServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>uploadServlet2</servlet-name>
+        <servlet-class>org.myeducation.portal.server.LectureUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>downloadServlet</servlet-name>
+        <servlet-class>org.myeducation.portal.server.LectureDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.myeducation.portal.MainPage CourseHelper</servlet-name>
+        <servlet-class>org.myeducation.portal.server.CourseHelperImpl</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>uploadServlet</servlet-name>
         <url-pattern>/Main/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>uploadServlet2</servlet-name>
+        <url-pattern>/Main/upload2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>downloadServlet</servlet-name>
+        <url-pattern>/Main/download</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>org.myeducation.portal.MainPage CourseHelper</servlet-name>
+        <url-pattern>/Main/CourseHelper</url-pattern>
     </servlet-mapping>
 
     <!-- Default page to serve -->
