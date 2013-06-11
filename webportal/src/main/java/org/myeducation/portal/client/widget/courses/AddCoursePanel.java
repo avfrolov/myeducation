@@ -105,7 +105,7 @@ public class AddCoursePanel extends VLayout {
                 final com.smartgwt.client.widgets.Window winModal = new com.smartgwt.client.widgets.Window();
                 winModal.setWidth(460);
                 winModal.setHeight(215);
-                winModal.setTitle("Modal Window");
+                winModal.setTitle("Добавить учебную неделю");
                 winModal.setShowMinimizeButton(false);
                 winModal.setIsModal(true);
                 winModal.setShowModalMask(true);

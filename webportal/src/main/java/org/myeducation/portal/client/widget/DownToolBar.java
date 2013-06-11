@@ -57,21 +57,21 @@ public class DownToolBar extends VLayout {
             }
         });
 
-        HyperLinkButton aboutLink = new HyperLinkButton("About");
+        HyperLinkButton aboutLink = new HyperLinkButton("О проекте");
         aboutLink.addMouseDownHandler(new MouseDownHandler() {
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
                 Window.Location.assign(GWT.getHostPageBaseURL() + "About.html" + devMode);
             }
         });
 
-        HyperLinkButton teamLink = new HyperLinkButton("Team");
+        HyperLinkButton teamLink = new HyperLinkButton("Команда");
         aboutLink.addMouseDownHandler(new MouseDownHandler() {
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
                 Window.Location.assign(GWT.getHostPageBaseURL() + "Team.html" + devMode);
             }
         });
 
-        HyperLinkButton helpLink = new HyperLinkButton("Help");
+        HyperLinkButton helpLink = new HyperLinkButton("Помощь");
         aboutLink.addMouseDownHandler(new MouseDownHandler() {
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
                 Window.Location.assign(GWT.getHostPageBaseURL() + "Help.html" + devMode);

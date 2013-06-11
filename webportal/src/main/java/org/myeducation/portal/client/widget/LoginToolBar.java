@@ -49,7 +49,7 @@ public class LoginToolBar extends HLayout{
         linkPanel.setMembersMargin(35);
         linkPanel.setLayoutRightMargin(20);
 
-        HyperLinkButton userLogin = new HyperLinkButton("Log in");
+        HyperLinkButton userLogin = new HyperLinkButton("Вход");
         userLogin.addMouseDownHandler(new MouseDownHandler() {
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
                 Window.Location.assign(GWT.getHostPageBaseURL()+"Login.html"+devMode);

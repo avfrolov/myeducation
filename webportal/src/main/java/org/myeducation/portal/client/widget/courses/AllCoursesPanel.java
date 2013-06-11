@@ -3,6 +3,7 @@ package org.myeducation.portal.client.widget.courses;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
@@ -12,8 +13,6 @@ import com.smartgwt.client.types.Encoding;
 import com.smartgwt.client.types.FormMethod;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.events.SubmitValuesEvent;
-import com.smartgwt.client.widgets.form.events.SubmitValuesHandler;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.StaticTextItem;
@@ -73,14 +72,14 @@ public class AllCoursesPanel extends VLayout {
         TextColumn<CourseGWT> startDateColumn = new TextColumn<CourseGWT>() {
             @Override
             public String getValue(CourseGWT course) {
-                return new Date(course.getStartDate()).toString();
+                return DateTimeFormat.getFormat("dd.MM.yyyy").format(new Date(course.getStartDate()));
             }
         };
 
         TextColumn<CourseGWT> endDateColumn = new TextColumn<CourseGWT>() {
             @Override
             public String getValue(CourseGWT course) {
-                return new Date(course.getEndDate()).toString();
+                return DateTimeFormat.getFormat("dd.MM.yyyy").format(new Date(course.getEndDate()));
             }
         };
 
